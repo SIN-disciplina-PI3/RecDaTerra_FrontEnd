@@ -14,6 +14,9 @@ import PerfilCliente from './pages/PerfilCliente/PerfilCliente';
 import PerfilProdutor from './pages/PerfilProdutor/PerfilProdutor';
 import Produtos from './pages/Produtos/Produtos';
 import Sobre from './pages/Sobre/Sobre';
+import EsqueciSenha from './pages/EsqueciSenha/EsqueciSenha';
+import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha';
+import RecuperaSenha from './pages/RecuperaSenha/RecuperaSenha';
 
 /* Importação das estilizações globais*/
 import './App.css';
@@ -34,6 +37,9 @@ function App() {
         <Route path="/perfilcliente" element={<PerfilCliente />} />
         <Route path="/perfilprodutor" element={<PerfilProdutor />} />
         <Route path="/produtos" element={<Produtos />} />
+        <Route path="/esquecisenha" element={<EsqueciSenha />} />
+        <Route path="/redefinirsenha" element={<RedefinirSenha />} />
+        <Route path="/recuperarsenha" element={<RecuperaSenha />} />
       </Routes>
     </Router>
   );

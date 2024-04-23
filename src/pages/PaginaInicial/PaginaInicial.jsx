@@ -1,8 +1,12 @@
 import './PaginaInicial.css'
+import NavbarInicial from '../../components/NavbarInicial/NavbarInicial';
 
 function PaginaInicial() {
     return (
-        <h1>Pagina Inicial</h1>
+        <div className="container">
+            <NavbarInicial />
+            <h1>Pagina Inicial</h1>
+        </div>
     )
 }
 
