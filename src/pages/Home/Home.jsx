@@ -1,8 +1,11 @@
-import './Home.css'
+import Navbar from '../../components/Navbar/Navbar';
 
 function Home() {
     return (
-        <h1>Home</h1>
+        <div className='container'>
+            <Navbar />
+            <h1>Home</h1>
+        </div>
     )
 }
 
