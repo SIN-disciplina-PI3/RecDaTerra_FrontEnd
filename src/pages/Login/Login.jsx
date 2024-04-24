@@ -85,7 +85,9 @@ function Login() {
                     </Box>
                     <Flex>
                         <Text fontWeight='regular' color={'white'} mr={'15px'}>Não tem uma conta?</Text>
-                        <Text fontWeight='regular' color={'#98FF68'} textDecoration={'underline'}><a href="#">Cadastre-se</a></Text>
+                        <Text fontWeight='regular' color={'#98FF68'} textDecoration={'underline'}>
+                        <Link as= {RouterLink} to="/cadastro">Cadastre-se!</Link>
+                        </Text>
                     </Flex>
                 </Box>
             </Container>
