@@ -68,7 +68,9 @@ function Login() {
                         <Link as={RouterLink} to="/esquecisenha" fontWeight='regular' color={'white'}>Esqueceu a senha?</Link>
                     </Box>
                     <Box textAlign={'center'} mt={'30px'} mb={'30px'}>
-                        <Button
+              <Button
+                    as = {RouterLink}
+                    to = "/home"
                              _hover={{ 
                                 backgroundColor: '#76E1FF', // Estilo de hover para a cor de fundo
                             }} 
