@@ -17,6 +17,7 @@ import Sobre from './pages/Sobre/Sobre';
 import EsqueciSenha from './pages/EsqueciSenha/EsqueciSenha';
 import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha';
 import RecuperaSenha from './pages/RecuperaSenha/RecuperaSenha';
+import Contato from './pages/Contato/Contato'
 
 /* Importação das estilizações globais*/
 import './App.css';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/conscientizaterra" element={<ConscientizAterra />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contato" element={<Contato />} />
         <Route path="/perfilcliente" element={<PerfilCliente />} />
         <Route path="/perfilprodutor" element={<PerfilProdutor />} />
         <Route path="/produtos" element={<Produtos />} />
