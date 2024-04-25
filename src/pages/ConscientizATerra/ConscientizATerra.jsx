@@ -2,7 +2,7 @@ import './ConscientizATerra.css'
 
 function ConscientizAterra() {
     return (
-        <h1>login</h1>
+        <h1>conscientizaterra</h1>
     )
 }
 
