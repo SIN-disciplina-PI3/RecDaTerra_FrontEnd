@@ -1,4 +1,5 @@
 import './PaginaInicial.css'
+
 import NavbarInicial from '../../components/NavbarInicial/NavbarInicial';
 import Footer from '../../components/Footer/Footer';
 

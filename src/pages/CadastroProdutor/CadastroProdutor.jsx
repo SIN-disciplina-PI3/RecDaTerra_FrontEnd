@@ -57,7 +57,9 @@ function CadastroProdutor() {
             <Flex direction="column" align="stretch" maxW="600px">
                 <div className="title">
               <Box mb={4} textAlign="center">
-                <h1>Cadastro como Cliente</h1>
+
+                <h1>Cadastro como Produtor</h1>
+
               </Box>
                 </div>
 
@@ -188,5 +190,6 @@ function CadastroProdutor() {
     </div>
   );
 }
+
 
 export default CadastroProdutor;
