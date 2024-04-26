@@ -8,7 +8,7 @@ import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import { CgProfile } from "react-icons/cg";
 
 
-function CadastroProdutor() {
+function CadastroCliente() {
   const [show, setShow] = useState(false);
   
 
@@ -111,4 +111,4 @@ function CadastroProdutor() {
   );
 }
 
-export default CadastroProdutor;
+export default CadastroCliente;

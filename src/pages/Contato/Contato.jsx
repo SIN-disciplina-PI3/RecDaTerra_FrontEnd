@@ -6,6 +6,7 @@ import FotoMatheus from '../../img/FotoMatheus.png';
 import FotoArthur from '../../img/FotoArthur.png';
 import FotoYuri from '../../img/FotoYuri.png';
 import FotoCecilia from '../../img/FotoCecilia.png';
+import Footer from '../../components/Footer/Footer';
 
 function Contato() {
     // Gabriel
@@ -236,6 +237,7 @@ function Contato() {
                         </Card>
                     </Card>
                 </Flex>
+                <Footer />
         </div>
     );
     

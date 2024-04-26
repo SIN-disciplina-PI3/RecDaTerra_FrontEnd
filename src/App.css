@@ -23,4 +23,8 @@ Button:hover {
 .title {
     font-size: 48px; /* Sem aspas */
     color: #98FF68;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    
 }
