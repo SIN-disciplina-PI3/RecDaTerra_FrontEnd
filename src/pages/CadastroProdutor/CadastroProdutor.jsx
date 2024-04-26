@@ -46,7 +46,7 @@ function CadastroProdutor() {
   return (
     <div className='container'>
       <NavbarLogin />
-      <Flex justify="center" align="center">
+      <Flex justify="center" align="center" mt = { 100}>
        
           <Box className='left-panel' mr={8}>
             <img src={VetorProdutor} alt="Vetor Produtor" />
@@ -57,7 +57,10 @@ function CadastroProdutor() {
             <Flex direction="column" align="stretch" maxW="600px">
                 <div className="title">
               <Box mb={4} textAlign="center">
-                <h1>Cadastro como Produtor</h1>
+
+                <h1 
+                style={{color: "white"}}>Cadastro como Produtor</h1>
+
               </Box>
                 </div>
 
@@ -188,5 +191,6 @@ function CadastroProdutor() {
     </div>
   );
 }
+
 
 export default CadastroProdutor;

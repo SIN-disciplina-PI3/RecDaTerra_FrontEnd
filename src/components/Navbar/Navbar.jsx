@@ -8,7 +8,7 @@ import LogoBranca from '../../img/logorecdaterra.svg'
 
 function Navbar() {
     return (
-        <div className='container'>
+        <>
             <Flex w={"100%"} h={"150px"} p={'10'} backgroundImage={`url(${ImgNavInicial})`} alignItems={'center'} justifyContent={'space-around'}>
                 <Box>
                     <Link as={RouterLink} to="/home">
@@ -59,7 +59,7 @@ function Navbar() {
                     </Link>
                 </Box>
             </Flex>
-        </div>
+        </>
     )
 }
 

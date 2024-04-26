@@ -1,12 +1,13 @@
 import NavbarSemPesquisa from "../../components/NavbarSemPesquisa/NavbarSemPesquisa";
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
+import Footer from '../../components/Footer/Footer'
 
 function Sobre() {
     return (
         <div className="container">
             <NavbarSemPesquisa />
             <Flex direction="column" align="center">
-                <Box className="sobre-container" maxW="900px" textAlign="justify" mx="auto" p="20px" mt={-500}>
+                <Box className="sobre-container" maxW="900px" textAlign="justify" mx="auto" p="20px" mt={100}>
                     <Center mb="20px">
                         <div className="title">
                             <Text as="h1">Sobre o RecDaTerra</Text>
@@ -50,6 +51,7 @@ function Sobre() {
                     </Box>
                 </Box>
             </Flex>
+            <Footer />
         </div>
     );
 }
