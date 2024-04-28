@@ -1,12 +1,9 @@
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Flex } from "@chakra-ui/react";
 
-import NavbarLogin from '../../components/NavbarLogin/NavbarLogin';
-
 function Cadastro() {
     return (
         <div className='container'>
-            <NavbarLogin />
             <div className="title">
                 <h1 style={{ color: 'white', marginTop: '10%' }}>Você deseja se cadastrar como:</h1>
             </div>

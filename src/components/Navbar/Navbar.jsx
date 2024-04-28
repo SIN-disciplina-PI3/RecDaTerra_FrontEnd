@@ -1,21 +1,38 @@
 import { Link as RouterLink } from "react-router-dom"
-import { Flex, Box, Link, InputGroup, Input, InputRightElement, IconButton, Text } from "@chakra-ui/react"
-import { BellIcon, ChatIcon, SearchIcon } from "@chakra-ui/icons"
-import { Icon } from '@chakra-ui/react'
-import { MdPermIdentity } from "react-icons/md";
-import ImgNavInicial from '/src/img/NavbarInicial.svg';
-import LogoBranca from '../../img/logorecdaterra.svg'
+import { useState, useEffect } from 'react'
+import { Flex, Box, Link, InputGroup, Input, InputRightElement, IconButton, Text, Image } from "@chakra-ui/react"
+import { Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody, useDisclosure } from "@chakra-ui/react";
+import { BellIcon, ChatIcon, AtSignIcon, SearchIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
+import ImgNav from '../../img/Navbar.svg'
+import LogoRec from '../../img/LogoRec.svg'
 
-function Navbar() {
+function Navbar({openNotification}) {
+    const [isMenuOpen, setMenuOpen] = useState(false);
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+
+    const toggleMenu = () => {
+        setMenuOpen(!isMenuOpen);
+    };
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 1200);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
         <>
-            <Flex w={"100%"} h={"150px"} p={'10'} backgroundImage={`url(${ImgNavInicial})`} alignItems={'center'} justifyContent={'space-around'}>
-                <Box>
-                    <Link as={RouterLink} to="/home">
-                        <img src={LogoBranca} alt="Logo"></img>
-                    </Link>
-                </Box>
-                <Box w={'466px'} m={'20px'}>
+            <Flex w={"auto"} h={"150px"} p={'10'} backgroundImage={`url(${ImgNav})`} alignItems={'center'} justifyContent={'space-around'}>
+                
+                <Image boxSize={["95px", "130px" ,"180px"]} src={LogoRec} />
+                
+                <Box w={[300, 400, 500]} m={'20px'}>
                     <InputGroup alignItems={'center'}>
                         <Input
                             variant='outline'
@@ -27,38 +44,75 @@ function Navbar() {
                             borderRadius={'30px'}
                             boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
                         />
-                        <InputRightElement backgroundColor={'#D6CFC5'}>
-                        <Link as={RouterLink} to="#">
-                                <IconButton variant="unstyled" borderRadius={'30px'}>
+                        <InputRightElement>
+                            <Link as={RouterLink} to="#">
+                                <IconButton background={'none'} borderRadius={'30px'}>
                                     <SearchIcon color='black' boxSize={5}/>
                                 </IconButton>
                             </Link>
                         </InputRightElement>
                     </InputGroup>
                 </Box>
-                <Box display={'flex'} m={'20px'} color={'white'}>
-                    <Text fontSize='xl'>
-                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/produtos">Produtos</Link>
-                    </Text>
-                    <Text fontSize='xl'>
-                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/sobre">Sobre</Link>
-                    </Text>
-                    <Text fontSize='xl'>
-                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/conscientizaterra">ConsientizATerra</Link>
-                    </Text>
+                
+                {isSmallScreen && (
+                <Box>
+                    <IconButton
+                    icon={<HamburgerIcon boxSize={6} />}
+                    color={'#7ED957'}
+                    backgroundColor={'#76603F'}
+                    onClick={toggleMenu}
+                    />
                 </Box>
-                <Box m={'20px'} display="flex" alignItems="center">
-                    <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
-                        <BellIcon color='white' boxSize={9} borderRadius={'25%'} transition={'all 0.3s ease-in-out'}/>
-                    </Link>
-                    <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
-                        <ChatIcon color='white' boxSize={8} />
-                    </Link>
-                    <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
-                        <Icon as={MdPermIdentity} color='white' boxSize={9} />
-                    </Link>
-                </Box>
+                )}
+
+                {!isSmallScreen && (
+                    <Box display={'flex'} m={'20px'}>
+                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/noti">
+                            <BellIcon
+                            onClick={openNotification}
+                            color='black'
+                            fontSize={'2em'}
+                            borderRadius={'25%'}
+                            transition={'all 0.3s ease-in-out'}
+                            _hover={{ backgroundColor: 'white', borderRadius: '25%' }} />
+                        </Link>
+                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
+                            <ChatIcon color='black' boxSize={8} />
+                        </Link>
+                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
+                            <AtSignIcon color='black' boxSize={9} />
+                        </Link>
+                    </Box>
+                )}
             </Flex>
+
+            <Drawer placement="right" onClose={toggleMenu} isOpen={isMenuOpen}>
+                <DrawerOverlay>
+                    <DrawerContent>
+                        <DrawerHeader display={'flex'} justifyContent={'space-around'}>
+                            <Text>Menu</Text>
+                            <CloseIcon onClick={toggleMenu} />
+                        </DrawerHeader>
+                        <DrawerBody m={'10px'}>
+                            <Box p={'10px'} display={'flex'} justifyContent={'space-around'} flexDirection={'row'}>
+                                <Link as={RouterLink} to="/noti">
+                                    <BellIcon
+                                    onClick={openNotification}
+                                    color='black'
+                                    boxSize={8} 
+                                    />
+                                </Link>
+                                <Link as={RouterLink} to="/chat">
+                                    <ChatIcon color='black' boxSize={8} />
+                                </Link>
+                                <Link as={RouterLink} to="#">
+                                    <AtSignIcon color='black' boxSize={9} />
+                                </Link>
+                            </Box>
+                        </DrawerBody>
+                    </DrawerContent>
+                </DrawerOverlay>
+            </Drawer>
         </>
     )
 }

@@ -4,7 +4,6 @@ import { Link as RouterLink } from "react-router-dom";
 import { Flex, Box, FormControl, FormLabel, Input, Select, InputGroup, InputLeftElement, InputRightElement, Button} from "@chakra-ui/react";
 import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import VetorProdutor from '../../img/VetorProdutor.svg';
-import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import { CgProfile } from "react-icons/cg";
 import { HiMiniIdentification } from "react-icons/hi2";
 
@@ -45,7 +44,6 @@ function CadastroProdutor() {
 
   return (
     <div className='container'>
-      <NavbarLogin />
       <Flex justify="center" align="center" mt = { 100}>
        
           <Box className='left-panel' mr={8}>

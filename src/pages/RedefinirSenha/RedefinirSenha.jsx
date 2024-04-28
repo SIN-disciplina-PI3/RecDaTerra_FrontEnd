@@ -1,18 +1,14 @@
 import { Link as RouterLink } from "react-router-dom"
-import { Box, Container, Link } from "@chakra-ui/react"
+import { Heading, Box, Container, Link } from "@chakra-ui/react"
 import { FormControl, FormLabel } from '@chakra-ui/react'
 import { Input, InputGroup, Button } from "@chakra-ui/react"
-import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 
 function RedefinirSenha() {
     return (
-        <div className="container">
-            <NavbarLogin />
+        <>
             <Container>
                 <Box textAlign={'center'} m={'80px'}>
-                <div className="title">
-                        <h1>Redefinir Senha</h1>
-                    </div>
+                    <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                 </Box>
                 <Box>
                     <FormControl>
@@ -41,7 +37,7 @@ function RedefinirSenha() {
                     </FormControl>
                 </Box>
                 <Box textAlign={'center'} mt={'40px'}>
-                    <Link as={RouterLink} to="/">
+                    <Link as={RouterLink} to="/home">
                         <Button
                             w={'100%'}
                             borderRadius={'20px'}
@@ -54,7 +50,7 @@ function RedefinirSenha() {
                     </Link>
                 </Box>
             </Container>
-        </div>
+        </>
     )
 }
 
