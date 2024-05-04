@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react'
 import { Flex, Box, Link, InputGroup, Input, InputRightElement, IconButton, Text, Image } from "@chakra-ui/react"
 import { Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody, useDisclosure } from "@chakra-ui/react";
 import { BellIcon, ChatIcon, AtSignIcon, SearchIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
+import {Icon} from '@chakra-ui/react'
+import { CgProfile } from "react-icons/cg";
+import { FiLogOut } from "react-icons/fi";
 import ImgNav from '../../img/Navbar.svg'
 import LogoRec from '../../img/LogoRec.svg'
 
@@ -30,7 +33,9 @@ function Navbar({openNotification}) {
         <>
             <Flex w={"auto"} h={"150px"} p={'10'} backgroundImage={`url(${ImgNav})`} alignItems={'center'} justifyContent={'space-around'}>
                 
+            <Link as={RouterLink} to="/home">
                 <Image boxSize={["95px", "130px" ,"180px"]} src={LogoRec} />
+            </Link>
                 
                 <Box w={[300, 400, 500]} m={'20px'}>
                     <InputGroup alignItems={'center'}>
@@ -80,7 +85,10 @@ function Navbar({openNotification}) {
                             <ChatIcon color='black' boxSize={8} />
                         </Link>
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
-                            <AtSignIcon color='black' boxSize={9} />
+                            <Icon as={CgProfile} color='black' boxSize={9} />
+                        </Link>
+                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
+                            <Icon as={FiLogOut} color='black' boxSize={9} />
                         </Link>
                     </Box>
                 )}
@@ -106,7 +114,7 @@ function Navbar({openNotification}) {
                                     <ChatIcon color='black' boxSize={8} />
                                 </Link>
                                 <Link as={RouterLink} to="#">
-                                    <AtSignIcon color='black' boxSize={9} />
+                                    <Icon as={CgProfile} color='black' boxSize={9} />
                                 </Link>
                             </Box>
                         </DrawerBody>

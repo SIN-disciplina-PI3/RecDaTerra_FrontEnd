@@ -1,6 +1,5 @@
 import NavbarSemPesquisa from "../../components/NavbarSemPesquisa/NavbarSemPesquisa";
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
-import Footer from '../../components/Footer/Footer'
 
 function Sobre() {
     return (
@@ -51,7 +50,7 @@ function Sobre() {
                     </Box>
                 </Box>
             </Flex>
-            <Footer />
+            
         </div>
     );
 }

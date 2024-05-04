@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import {Icon} from '@chakra-ui/react'
+import { IoMdSend } from "react-icons/io";
+import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { ArrowLeftIcon, ArrowRightIcon, InfoOutlineIcon, SmallAddIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import { Link as RouterLink } from "react-router-dom"
 import { Avatar, Flex, Heading, Box, Container, Image, Text, Link, Divider, Stat, StatNumber, Grid, GridItem } from '@chakra-ui/react'
 import { Card, CardHeader, CardBody, CardFooter, Input, InputGroup, InputRightElement, InputLeftElement } from '@chakra-ui/react'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules'
+import ModalProdutor from '../../components/ModalProdutor/ModalProdutor'
 import SwiperCore from 'swiper'
 import 'swiper/css'
 import ImgDest from '../../img/ImgDestaque.svg'
@@ -50,19 +54,37 @@ function Home() {
         }
     };
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsOpen(false);
+    };
+
+    useEffect(() => {
+        setIsOpen(true); // Definir isOpen como true ao montar o componente
+    }, []);
+
     return (
         <>
+            <ModalProdutor isOpen={isOpen} onClose={handleCloseModal} />
             <Container maxW={'100%'} mb={'30px'} mt={'80px'}>
                 <Box mb={'40px'} textAlign={'center'}>
                     <Heading color={'#98FF68'}>Destaques Semanais</Heading>
                 </Box>
                 <Box display={'flex'} alignItems={'center'} textAlign={'center'}>
-                    <ArrowLeftIcon m={'20px'} boxSize={[6, 9]} color={'#98FF68'} cursor={'pointer'} onClick={handleSlidePrev} />
+                    
                     <Swiper
                         modules={[Navigation, Pagination, Scrollbar, A11y]}
                         spaceBetween={30}
                         slidesPerView={slidesPerView}
-                        navigation
+                        navigation={{
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        }}
                         pagination={{ clickable: true }}
                         scrollbar={{ draggable: true }}
                         onSlideChange={() => console.log('slide change')}
@@ -86,8 +108,10 @@ function Home() {
                         <SwiperSlide style={{display: 'flex', justifyContent: 'center'}}>
                             <Image src={ImgDest3} backgroundColor={'#7CC152'} p={'20px'} borderRadius={'15px'} />
                         </SwiperSlide>
+                        <div className="swiper-button-prev" style={{ color: '#98FF68', paddingRight: '40px' }}></div>
+                        <div className="swiper-button-next" style={{ color: '#98FF68', paddingLeft: '40px' }}></div>
                     </Swiper>
-                    <ArrowRightIcon m={'20px'} boxSize={[6, 9]} color={'#98FF68'} cursor={'pointer'} onClick={handleSlideNext} />
+                    
                 </Box>
             </Container>
 
@@ -127,7 +151,7 @@ function Home() {
                                 <Box m={'5px'}>
                                     <InputGroup mb={'10px'}>
                                         <InputLeftElement>
-                                            <Avatar boxSize='1.30em' border={'0.1px solid black'} src='https://bit.ly/broken-link' />
+                                            <Icon as={MdOutlineEmojiEmotions} color='black' boxSize={6}/>
                                         </InputLeftElement>
                                         <Input
                                             backgroundColor={'#C1C1C1'}
@@ -139,7 +163,7 @@ function Home() {
                                             fontSize={'sm'}
                                         />
                                         <InputRightElement>
-                                            <ArrowRightIcon />
+                                            <Icon as={IoMdSend} color='black' boxSize={6}/>
                                         </InputRightElement>
                                     </InputGroup>
                                 </Box>
@@ -204,7 +228,7 @@ function Home() {
                                 <Box m={'5px'}>
                                     <InputGroup mb={'10px'}>
                                         <InputLeftElement>
-                                            <Avatar boxSize='1.30em' border={'0.1px solid black'} src='https://bit.ly/broken-link' />
+                                            <Icon as={MdOutlineEmojiEmotions} color='black' boxSize={6}/>
                                         </InputLeftElement>
                                         <Input
                                             backgroundColor={'#C1C1C1'}
@@ -216,7 +240,7 @@ function Home() {
                                             fontSize={'sm'}
                                         />
                                         <InputRightElement>
-                                            <ArrowRightIcon />
+                                            <Icon as={IoMdSend} color='black' boxSize={6}/>
                                         </InputRightElement>
                                     </InputGroup>
                                 </Box>
@@ -281,7 +305,7 @@ function Home() {
                                 <Box m={'5px'}>
                                     <InputGroup mb={'10px'}>
                                         <InputLeftElement>
-                                            <Avatar boxSize='1.30em' border={'0.1px solid black'} src='https://bit.ly/broken-link' />
+                                            <Icon as={MdOutlineEmojiEmotions} color='black' boxSize={6}/>
                                         </InputLeftElement>
                                         <Input
                                             backgroundColor={'#C1C1C1'}
@@ -293,7 +317,7 @@ function Home() {
                                             fontSize={'sm'}
                                         />
                                         <InputRightElement>
-                                            <ArrowRightIcon />
+                                            <Icon as={IoMdSend} color='black' boxSize={6}/>
                                         </InputRightElement>
                                     </InputGroup>
                                 </Box>
@@ -358,7 +382,7 @@ function Home() {
                                 <Box m={'5px'}>
                                     <InputGroup mb={'10px'}>
                                         <InputLeftElement>
-                                            <Avatar boxSize='1.30em' border={'0.1px solid black'} src='https://bit.ly/broken-link' />
+                                            <Icon as={MdOutlineEmojiEmotions} color='black' boxSize={6}/>
                                         </InputLeftElement>
                                         <Input
                                             backgroundColor={'#C1C1C1'}
@@ -370,7 +394,7 @@ function Home() {
                                             fontSize={'sm'}
                                         />
                                         <InputRightElement>
-                                            <ArrowRightIcon />
+                                            <Icon as={IoMdSend} color='black' boxSize={6}/>
                                         </InputRightElement>
                                     </InputGroup>
                                 </Box>

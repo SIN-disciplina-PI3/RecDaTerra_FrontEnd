@@ -1,5 +1,4 @@
 import { Flex, Icon, Text, Card, CardBody, Image } from "@chakra-ui/react";
-import NavbarSemPesquisa from "../../components/NavbarSemPesquisa/NavbarSemPesquisa";
 import { FaLinkedin, FaInstagramSquare, FaGithub } from "react-icons/fa";
 import FotoGabriel from '../../img/FotoGabriel.png';
 import FotoMatheus from '../../img/FotoMatheus.png';
@@ -36,7 +35,7 @@ function Contato() {
 
     return (
         <div className="container">
-            <NavbarSemPesquisa />
+           
                 <Flex mt={59} flexDirection={{ base: 'column', md: 'row' }} // Alinha os itens em coluna em telas pequenas e em linha em telas médias e maiores
                 justify="center" // Centraliza os itens horizontalmente
                 alignItems="center" // Centraliza os itens verticalmente
@@ -237,7 +236,6 @@ function Contato() {
                         </Card>
                     </Card>
                 </Flex>
-                <Footer />
         </div>
     );
     

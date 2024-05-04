@@ -1,6 +1,4 @@
 import './ConscientizATerra.css';
-import NavbarSemPesquisa from '../../components/NavbarSemPesquisa/NavbarSemPesquisa';
-import Footer from '../../components/Footer/Footer';
 import { Flex, Box, Center, Text, Image } from '@chakra-ui/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -9,7 +7,6 @@ import 'swiper/css/effect-cube';
 function ConscientizAterra() {
     return (
         <div className="container">
-            <NavbarSemPesquisa />
 
             <Flex direction="column" align="center">
                 <Center>
@@ -74,7 +71,7 @@ function ConscientizAterra() {
                 </Box>
 
             </Flex>
-            <Footer />
+            
         </div>
     )
 }

@@ -7,6 +7,7 @@ import NavbarVisi from './components/NavbarVisi/NavbarVisi'
 import NavbarLogin from './components/NavbarLogin/NavbarLogin'
 import Navbar from './components/Navbar/Navbar'
 import Noti from './components/ModalNotificacao/ModalNotificacao'
+import Footer from './components/Footer/Footer'
 
 /*Importação das Páginas*/
 import Home from './pages/Home/Home';
@@ -60,6 +61,7 @@ function App() {
           <Route path='/perfilprodutor' element={<PerfilProdutor />} />
           <Route path='/produtos' element={<Produtos />} />
         </Routes>
+        <Footer />
       </>
   );
 }
