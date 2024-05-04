@@ -3,17 +3,3 @@ footer {
     z-index: 1000;
     margin-top: 15px;
 }
-
-@media screen and (max-width: 768px) {
-    footer {
-        position: sticky;
-        bottom: 0;
-    }
-}
-
-@media screen and (min-width: 769px) {
-    footer {
-        position: fixed;
-        bottom: 0;
-    }
-}

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Flex, Box, FormControl, FormLabel, Input, Select, InputGroup, InputLeftElement, InputRightElement, Button} from "@chakra-ui/react";
