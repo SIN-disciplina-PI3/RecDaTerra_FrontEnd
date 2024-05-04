@@ -4,7 +4,6 @@ import { Link as RouterLink } from "react-router-dom";
 import { Flex, Box, FormControl, FormLabel, Input, InputGroup, InputLeftElement, InputRightElement, Button} from "@chakra-ui/react";
 import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import VetorCliente from '../../img/VetorCliente.svg';
-import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import { CgProfile } from "react-icons/cg";
 
 
@@ -14,7 +13,6 @@ function CadastroCliente() {
 
   return (
     <div className='container'>
-      <NavbarLogin />
       <Flex justify="center" align="center" mt={100}>
        
           <Box className='left-panel' mr={8}>
