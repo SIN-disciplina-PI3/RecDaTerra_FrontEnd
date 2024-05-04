@@ -1,5 +1,12 @@
-import { Route } from 'react-router-dom';
-import { BrowserRouter as Router, Routes} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useDisclosure } from "@chakra-ui/react";
+
+/*Importação doscomponentes*/
+import NavbarVisi from './components/NavbarVisi/NavbarVisi'
+import NavbarLogin from './components/NavbarLogin/NavbarLogin'
+import Navbar from './components/Navbar/Navbar'
+import Noti from './components/ModalNotificacao/ModalNotificacao'
 
 /*Importação das Páginas*/
 import Home from './pages/Home/Home';
@@ -19,31 +26,41 @@ import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha';
 import RecuperaSenha from './pages/RecuperaSenha/RecuperaSenha';
 import Contato from './pages/Contato/Contato'
 
-/* Importação das estilizações globais*/
-import './App.css';
-
 function App() {
+  const location = useLocation();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<PaginaInicial />} />
-        <Route path="/sobre" element={<Sobre />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/cadastrocliente" element={<CadastroCliente />} />
-        <Route path="/cadastroprodutor" element={<CadastroProdutor />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/conscientizaterra" element={<ConscientizAterra />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/contato" element={<Contato />} />
-        <Route path="/perfilcliente" element={<PerfilCliente />} />
-        <Route path="/perfilprodutor" element={<PerfilProdutor />} />
-        <Route path="/produtos" element={<Produtos />} />
-        <Route path="/esquecisenha" element={<EsqueciSenha />} />
-        <Route path="/redefinirsenha" element={<RedefinirSenha />} />
-        <Route path="/recuperarsenha" element={<RecuperaSenha />} />
-      </Routes>
-    </Router>
+      <>
+        {location.pathname === '/' ? <NavbarVisi /> :
+          location.pathname === '/login' ||
+          location.pathname === '/esquecisenha' ||
+          location.pathname === '/recuperasenha' ||
+          location.pathname === '/redefinirsenha' ||
+          location.pathname === '/cadastro' ||
+          location.pathname === '/cadastroCliente' ||
+          location.pathname === '/cadastroProdutor' ? <NavbarLogin /> :
+          <Navbar openNotification={onOpen} />}
+        <Routes>
+          <Route path='/' element={<PaginaInicial />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/esquecisenha' element={<EsqueciSenha />} />
+          <Route path='/recuperasenha' element={<RecuperaSenha />} />
+          <Route path='/redefinirsenha' element={<RedefinirSenha />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/noti' element={<Noti isOpen={isOpen} onClose={onClose} />} />
+          <Route path='/sobre' element={<Sobre />} />
+          <Route path='/cadastro' element={<Cadastro />} />
+          <Route path='/cadastrocliente' element={<CadastroCliente />} />
+          <Route path='/cadastroprodutor' element={<CadastroProdutor />} />
+          <Route path='/chat' element={<Chat />} />
+          <Route path='/conscientizaterra' element={<ConscientizAterra />} />
+          <Route path='/contato' element={<Contato />} />
+          <Route path='/perfilcliente' element={<PerfilCliente />} />
+          <Route path='/perfilprodutor' element={<PerfilProdutor />} />
+          <Route path='/produtos' element={<Produtos />} />
+        </Routes>
+      </>
   );
 }
 
