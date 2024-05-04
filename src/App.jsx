@@ -1,12 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { useDisclosure } from "@chakra-ui/react";
+
+/*import register from 'swiper/element/bundle'
+register();*/
 
 /*Importação doscomponentes*/
 import NavbarVisi from './components/NavbarVisi/NavbarVisi'
 import NavbarLogin from './components/NavbarLogin/NavbarLogin'
 import Navbar from './components/Navbar/Navbar'
-import Noti from './components/ModalNotificacao/ModalNotificacao'
 
 /*Importação das Páginas*/
 import Home from './pages/Home/Home';
@@ -28,7 +29,6 @@ import Contato from './pages/Contato/Contato'
 
 function App() {
   const location = useLocation();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
       <>
@@ -40,7 +40,7 @@ function App() {
           location.pathname === '/cadastro' ||
           location.pathname === '/cadastroCliente' ||
           location.pathname === '/cadastroProdutor' ? <NavbarLogin /> :
-          <Navbar openNotification={onOpen} />}
+          <Navbar />}
         <Routes>
           <Route path='/' element={<PaginaInicial />} />
           <Route path='/login' element={<Login />} />
@@ -48,7 +48,6 @@ function App() {
           <Route path='/recuperasenha' element={<RecuperaSenha />} />
           <Route path='/redefinirsenha' element={<RedefinirSenha />} />
           <Route path='/home' element={<Home />} />
-          <Route path='/noti' element={<Noti isOpen={isOpen} onClose={onClose} />} />
           <Route path='/sobre' element={<Sobre />} />
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path='/cadastrocliente' element={<CadastroCliente />} />
