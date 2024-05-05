@@ -1,10 +1,10 @@
-import NavbarSemPesquisa from "../../components/NavbarSemPesquisa/NavbarSemPesquisa";
+
 import { Box, Center, Flex, Text } from "@chakra-ui/react";
 
 function Sobre() {
     return (
         <div className="container">
-            <NavbarSemPesquisa />
+            
             <Flex direction="column" align="center">
                 <Box className="sobre-container" maxW="900px" textAlign="justify" mx="auto" p="20px" mt={100}>
                     <Center mb="20px">
