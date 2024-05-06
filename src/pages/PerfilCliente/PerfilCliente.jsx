@@ -1,8 +1,8 @@
-import './PerfilCliente.css'
-
 function PerfilCliente() {
     return (
-        <h1>Perfil do Cliente</h1>
+        <div className="container">
+            <h1>Perfil do Cliente</h1>
+        </div>
     )
 }
 

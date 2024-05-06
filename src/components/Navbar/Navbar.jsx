@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react'
 import { Flex, Box, Link, InputGroup, Input, InputRightElement, IconButton, Text, Image } from "@chakra-ui/react"
 import { Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody, useDisclosure } from "@chakra-ui/react";
 import { BellIcon, ChatIcon, AtSignIcon, SearchIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
-import {Icon} from '@chakra-ui/react'
+import { Icon } from '@chakra-ui/react'
 import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
 import ImgNav from '../../img/Navbar.svg'
 import LogoRec from '../../img/LogoRec.svg'
 
-function Navbar({openNotification}) {
+function Navbar({ openNotification }) {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
@@ -32,11 +32,11 @@ function Navbar({openNotification}) {
     return (
         <>
             <Flex w={"auto"} h={"150px"} p={'10'} backgroundImage={`url(${ImgNav})`} alignItems={'center'} justifyContent={'space-around'}>
-                
-            <Link as={RouterLink} to="/home">
-                <Image boxSize={["95px", "130px" ,"180px"]} src={LogoRec} />
-            </Link>
-                
+
+                <Link as={RouterLink} to="/home">
+                    <Image boxSize={["95px", "130px", "180px"]} src={LogoRec} _hover={{ transform: 'scale(1.1)' }}/>
+                </Link>
+
                 <Box w={[300, 400, 500]} m={'20px'}>
                     <InputGroup alignItems={'center'}>
                         <Input
@@ -52,43 +52,43 @@ function Navbar({openNotification}) {
                         <InputRightElement>
                             <Link as={RouterLink} to="#">
                                 <IconButton background={'none'} borderRadius={'30px'}>
-                                    <SearchIcon color='black' boxSize={5}/>
+                                    <SearchIcon color='black' boxSize={5} />
                                 </IconButton>
                             </Link>
                         </InputRightElement>
                     </InputGroup>
                 </Box>
-                
+
                 {isSmallScreen && (
-                <Box>
-                    <IconButton
-                    icon={<HamburgerIcon boxSize={6} />}
-                    color={'#7ED957'}
-                    backgroundColor={'#76603F'}
-                    onClick={toggleMenu}
-                    />
-                </Box>
+                    <Box>
+                        <IconButton
+                            icon={<HamburgerIcon boxSize={6} />}
+                            color={'#7ED957'}
+                            backgroundColor={'#76603F'}
+                            onClick={toggleMenu}
+                        />
+                    </Box>
                 )}
 
                 {!isSmallScreen && (
                     <Box display={'flex'} m={'20px'}>
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/noti">
                             <BellIcon
-                            onClick={openNotification}
-                            color='black'
-                            fontSize={'2em'}
-                            borderRadius={'25%'}
-                            transition={'all 0.3s ease-in-out'}
-                            _hover={{ backgroundColor: 'white', borderRadius: '25%' }} />
+                                onClick={openNotification}
+                                color='black'
+                                fontSize={'2em'}
+                                borderRadius={'25%'}
+                                transition={'all 0.3s ease-in-out'}
+                                _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
-                            <ChatIcon color='black' boxSize={8} />
+                            <ChatIcon color='black' boxSize={8} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
-                            <Icon as={CgProfile} color='black' boxSize={9} />
+                            <Icon as={CgProfile} color='black' boxSize={9} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
-                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
-                            <Icon as={FiLogOut} color='black' boxSize={9} />
+                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/login">
+                            <Icon as={FiLogOut} color='black' boxSize={9} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
                     </Box>
                 )}
@@ -105,16 +105,19 @@ function Navbar({openNotification}) {
                             <Box p={'10px'} display={'flex'} justifyContent={'space-around'} flexDirection={'row'}>
                                 <Link as={RouterLink} to="/noti">
                                     <BellIcon
-                                    onClick={openNotification}
-                                    color='black'
-                                    boxSize={8} 
+                                        onClick={openNotification}
+                                        color='black'
+                                        boxSize={8}
                                     />
                                 </Link>
                                 <Link as={RouterLink} to="/chat">
-                                    <ChatIcon color='black' boxSize={8} />
+                                    <ChatIcon color='black' boxSize={9} _hover={{ transform: 'scale(1.2)' }}/>
                                 </Link>
                                 <Link as={RouterLink} to="#">
-                                    <Icon as={CgProfile} color='black' boxSize={9} />
+                                    <Icon as={CgProfile} color='black' boxSize={9} _hover={{ transform: 'scale(1.2)' }}/>
+                                </Link>
+                                <Link as={RouterLink} to="/login">
+                                    <Icon as={FiLogOut} color='black' boxSize={9} _hover={{ transform: 'scale(1.2)' }} />
                                 </Link>
                             </Box>
                         </DrawerBody>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import 'https://code.jquery.com/jquery-3.7.1.min.js'
 import 'https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js'
 
@@ -31,6 +31,38 @@ function ModalProdutor({ isOpen, onOpen, onClose }) {
     const [estado, setEstado] = React.useState('');
     const [telefone, setTelefone] = React.useState('');
     const [instagram, setInstagram] = React.useState('');
+    const [showModal, setShowModal] = useState(false);
+
+    // Verificar se o modal já foi exibido anteriormente
+    useEffect(() => {
+        const modalDisplayed = localStorage.getItem('modalDisplayed');
+        if (!modalDisplayed) {
+            setShowModal(true);
+        }
+    }, []);
+
+    // Lidar com o clique no botão "Fazer depois"
+    const handleDoLater = () => {
+        // Armazenar no localStorage que o modal foi exibido
+        localStorage.setItem('modalDisplayed', 'true');
+        // Fechar o modal
+        onClose();
+    };
+
+    // Limpar a entrada no localStorage em uma atualização significativa do aplicativo
+    useEffect(() => {
+        const handleAppUpdate = () => {
+            localStorage.removeItem('modalDisplayed');
+        };
+
+        // Subscrever ao evento de atualização do aplicativo
+        window.addEventListener('appUpdate', handleAppUpdate);
+
+        return () => {
+            // Limpar o evento de atualização do aplicativo ao desmontar o componente
+            window.removeEventListener('appUpdate', handleAppUpdate);
+        };
+    }, []);
 
     const handleChangeRua = (value) => {
         setRua(value);
@@ -110,7 +142,7 @@ function ModalProdutor({ isOpen, onOpen, onClose }) {
         <Modal
             initialFocusRef={initialRef}
             finalFocusRef={finalRef}
-            isOpen={isOpen}
+            isOpen={isOpen && showModal}
             onClose={onClose}
             size={"xl"}
         >
@@ -209,7 +241,8 @@ function ModalProdutor({ isOpen, onOpen, onClose }) {
                     <Button colorScheme='blue' mr={3}>
                         Cadastrar Informações
                     </Button>
-                    <Button onClick={onClose}>Cancelar</Button>
+                    <Button colorScheme='red' onClick={onClose}>Cancelar</Button>
+                    <Text onClick={handleDoLater} color={'green'}>Fazer depois</Text>
                 </ModalFooter>
             </ModalContent>
         </Modal>

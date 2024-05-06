@@ -7,7 +7,7 @@ function RedefinirSenha() {
     return (
         <>
             <Container>
-                <Box textAlign={'center'} m={'80px'}>
+                <Box textAlign={'center'} m={'50px'}>
                     <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                 </Box>
                 <Box>
@@ -36,7 +36,7 @@ function RedefinirSenha() {
                         </InputGroup>
                     </FormControl>
                 </Box>
-                <Box textAlign={'center'} mt={'40px'}>
+                <Box textAlign={'center'} mt={'40px'} mb={'40px'}>
                     <Link as={RouterLink} to="/home">
                         <Button
                             w={'100%'}

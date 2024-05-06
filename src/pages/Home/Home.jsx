@@ -78,15 +78,13 @@ function Home() {
                 <Box display={'flex'} alignItems={'center'} textAlign={'center'}>
                     
                     <Swiper
-                        modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        modules={[Navigation]}
                         spaceBetween={30}
                         slidesPerView={slidesPerView}
                         navigation={{
                             nextEl: '.swiper-button-next',
                             prevEl: '.swiper-button-prev',
                         }}
-                        pagination={{ clickable: true }}
-                        scrollbar={{ draggable: true }}
                         onSlideChange={() => console.log('slide change')}
                         onSwiper={(swiper) => console.log(swiper)}
                     >
