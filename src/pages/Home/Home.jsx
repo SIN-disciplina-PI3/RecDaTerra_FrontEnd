@@ -24,6 +24,7 @@ import ImgProdutor from '../../img/ImgProdutor.svg'
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 function Home() {
+
     const swiper = useSwiper();
 
     const [slidesPerView, setSlidesPerView] = useState(() => (window.innerWidth < 768 ? 1 : 3));
@@ -52,7 +53,7 @@ function Home() {
             console.log('Próximo slide');
             swiper.slideNext();
         }
-    };
+    };  
 
     const [isOpen, setIsOpen] = useState(false);
 
