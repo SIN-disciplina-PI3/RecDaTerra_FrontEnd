@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import 'https://code.jquery.com/jquery-3.7.1.min.js'
-import 'https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js'
-
+import React, { useEffect, useState } from 'react';
+import 'https://code.jquery.com/jquery-3.7.1.min.js';
+import 'https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js';
 import {
     Modal,
     ModalOverlay,
@@ -19,7 +18,6 @@ import {
     FormLabel
 } from '@chakra-ui/react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-
 
 function ModalProdutor({ isOpen, onOpen, onClose }) {
     const initialRef = React.useRef(null);
@@ -138,112 +136,130 @@ function ModalProdutor({ isOpen, onOpen, onClose }) {
     };
 
     return (
-
         <Modal
             initialFocusRef={initialRef}
             finalFocusRef={finalRef}
             isOpen={isOpen && showModal}
             onClose={onClose}
-            size={"xl"}
+            size={'xl'}
         >
             <ModalOverlay />
-            <ModalContent>
-                <ModalHeader>Cadastre duas informações adicionais</ModalHeader>
+            <ModalContent bgColor={'#76603F'}>
+                <ModalHeader fontSize={'32px'} color={'#98FF68'}>Cadastre duas informações adicionais</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
-                    <Text pt={3} pb={3} fontSize={20}>Endereço</Text>
+                    <Text color={'#98FF68'} pt={3} pb={3} fontSize={20}>Endereço</Text>
                     <FormControl isRequired>
-                        <FormLabel>CEP</FormLabel>
+                        <FormLabel color={'white'}>CEP</FormLabel>
                         <Input
                             ref={initialRef}
                             placeholder='Digite seu CEP'
                             onBlur={checkCep}
+                            bgColor="white"
+                            borderRadius={12}
                         />
                     </FormControl>
 
                     <FormControl mt={4} isRequired>
-                        <FormLabel>Rua</FormLabel>
+                        <FormLabel color={'white'}>Rua</FormLabel>
                         <InputGroup>
-                            <InputLeftElement pointerEvents="none">
-                                <FaMapMarkerAlt color="gray.300" />
-                            </InputLeftElement>
                             <Input
                                 type="text"
                                 placeholder="Rua"
                                 value={rua}
                                 onChange={(e) => handleChangeRua(e.target.value)}
+                                bgColor="white"
+                                borderRadius={12}
                             />
                         </InputGroup>
                     </FormControl>
 
                     <FormControl mt={4} isRequired>
-                        <FormLabel>Número</FormLabel>
+                        <FormLabel color={'white'}>Número</FormLabel>
                         <Input
                             type="number"
                             placeholder="Número"
                             value={numero}
                             onChange={(e) => handleChangeNumero(e.target.value)}
+                            bgColor="white"
+                            borderRadius={12}
                         />
                     </FormControl>
-                    
+
                     <FormControl mt={4} isRequired>
-                        <FormLabel>Bairro</FormLabel>
+                        <FormLabel color={'white'}>Bairro</FormLabel>
                         <Input
                             type="text"
                             placeholder="Bairro"
                             value={bairro}
                             onChange={(e) => handleChangeBairro(e.target.value)}
+                            bgColor="white"
+                            borderRadius={12}
                         />
                     </FormControl>
 
                     <FormControl mt={4} isRequired>
-                        <FormLabel>Cidade</FormLabel>
+                        <FormLabel color={'white'}>Cidade</FormLabel>
                         <Input
                             type="text"
                             placeholder="Cidade"
                             value={cidade}
                             onChange={(e) => setCidade(e.target.value)}
+                            bgColor="white"
+                            borderRadius={12}
                         />
                     </FormControl>
 
                     <FormControl mt={4} isRequired>
-                        <FormLabel>Estado</FormLabel>
+                        <FormLabel color={'white'}>Estado</FormLabel>
                         <Input
                             type="text"
                             placeholder="Estado"
                             value={estado}
                             onChange={(e) => setEstado(e.target.value)}
+                            bgColor="white"
+                            borderRadius={12}
                         />
                     </FormControl>
 
-                    <Text pt={3} pb={3} fontSize={20}>Informações Pessoais ou do Empreendimento</Text>
-                    <FormControl mt={4} isRequired>
-                        <FormLabel>Telefone (Whatsapp)</FormLabel>
+                    <Text color={'#98FF68'} pt={10} pb={3} fontSize={20}>Informações Pessoais ou do Empreendimento</Text>
+                    <FormControl mt={1} isRequired>
+                        <FormLabel color={'white'}>Telefone (Whatsapp)</FormLabel>
                         <Input
                             type="tel"
                             placeholder="(81) 90000-0000"
                             value={telefone}
                             onChange={(e) => handleChangeTelefone(e.target.value)}
+                            bgColor="white"
+                            borderRadius={12}
                         />
                     </FormControl>
                     <FormControl mt={4}>
-                        <FormLabel>Instagram</FormLabel>
+                        <FormLabel color={'white'}>Instagram</FormLabel>
                         <Input
                             type="text"
                             placeholder="@usuario"
                             value={instagram}
                             onChange={(e) => handleChangeInstagram(e.target.value)}
+                            bgColor="white"
+                            borderRadius={12}
                         />
                     </FormControl>
                 </ModalBody>
 
                 <ModalFooter>
-                    <Button colorScheme='blue' mr={3}>
-                        Cadastrar Informações
-                    </Button>
-                    <Button colorScheme='red' onClick={onClose}>Cancelar</Button>
-                    <Text onClick={handleDoLater} color={'green'}>Fazer depois</Text>
+                <Button colorScheme='green' w={'1500px'} mr={3} style={{ boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
+                Cadastrar Informações
+            </Button>
+            <Button colorScheme='red' w={'750px'} onClick={onClose} style={{ boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
+                Cancelar
+            </Button>
+
+                    <Text cursor={'pointer'} pl={'35px'} onClick={handleDoLater} color={'white'} opacity={0.7} textDecoration={'underline'} textAlign={'justify'} whiteSpace="nowrap">
+                        Fazer depois
+                    </Text>
                 </ModalFooter>
+
             </ModalContent>
         </Modal>
     );
