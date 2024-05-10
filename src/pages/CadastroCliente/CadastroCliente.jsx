@@ -89,9 +89,6 @@ function CadastroCliente() {
                 as={RouterLink} 
                 to="/home" 
                 type='submit'
-                _hover={{ 
-                  backgroundColor: '#76E1FF', // Estilo de hover para a cor de fundo
-                }} 
                 w='100%'
                 borderRadius='20px'
                 color='black'

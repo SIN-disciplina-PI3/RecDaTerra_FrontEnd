@@ -10,9 +10,9 @@ function Login() {
     const handleClick = () => setShow(!show)
 
     return (
-        <>
+        <div className="container">
             <Container>
-                <Box textAlign={'center'} m={'80px'}>
+                <Box textAlign={'center'} m={'50px'}>
                     <Heading color={'white'} fontWeight='bold'>Faça seu Login</Heading>
                 </Box>
                 <Box>
@@ -70,13 +70,13 @@ function Login() {
                             >Entrar</Button>
                         </Link>
                     </Box>
-                    <Flex>
+                    <Flex mb={'50px'}>
                         <Text fontWeight='regular' color={'white'} mr={'15px'}>Não tem uma conta?</Text>
                         <Text fontWeight='regular' color={'#98FF68'} textDecoration={'underline'}> <Link as={RouterLink} to="/cadastro">Cadastre-se</Link></Text>
                     </Flex>
                 </Box>
             </Container>
-        </>
+        </div>
     )
 }
 

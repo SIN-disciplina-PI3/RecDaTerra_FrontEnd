@@ -49,7 +49,7 @@ function PaginaInicial() {
             <Container maxW={'100%'} alignItems={'center'} display={'flex'} justifyContent={'space-evenly'} mt={'80px'} flexDirection={['column', 'row']}>
                 <Box>
                     <Box mb={'40px'} textAlign={['center', 'left']}>
-                        <Heading size='2xl' color={'#98FF68'}>Bem Vindo ao RecDaTerra</Heading>
+                        <Heading fontSize={'60px'} color={'#98FF68'}>Bem Vindo ao RecDaTerra</Heading>
                         <Text color={'white'}>Conectando produtores Locais e Pernambucanos Conscientes</Text>
                     </Box>
                     <Box textAlign={'center'} mb={['20px', '0px']}>
@@ -68,8 +68,9 @@ function PaginaInicial() {
                             <Text color={'white'}>Ou</Text>
                         </Box>
                         <Link as={RouterLink} to="#">
-                            <Text color={'white'}>Entre como Visitante</Text>
+                            <Text color={'white'} _hover={{ textDecoration: 'underline', color: 'white' }}>Entre como Visitante</Text>
                         </Link>
+
                     </Box>
                 </Box>
                 <Box>
@@ -84,14 +85,14 @@ function PaginaInicial() {
                     <Heading color={'#98FF68'}>Destaques Semanais</Heading>
                 </Box>
                 <Box display={'flex'} alignItems={'center'} textAlign={'center'}>
-                    <ArrowLeftIcon m={'20px'} boxSize={[7, 9]} color={'#98FF68'} cursor={'pointer'} onClick={handleSlidePrev} />
                     <Swiper
-                        modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        modules={[Navigation]}
                         spaceBetween={50}
                         slidesPerView={slidesPerView}
-                        navigation
-                        pagination={{ clickable: true }}
-                        scrollbar={{ draggable: true }}
+                        navigation={{
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        }}
                         onSlideChange={() => console.log('slide change')}
                         onSwiper={(swiper) => console.log(swiper)}
                     >
@@ -113,8 +114,9 @@ function PaginaInicial() {
                         <SwiperSlide style={{display: 'flex', justifyContent: 'center'}}>
                             <Image src={ImgDest3} backgroundColor={'#7CC152'} p={'20px'} borderRadius={'15px'} />
                         </SwiperSlide>
+                        <div className="swiper-button-prev" style={{ color: '#98FF68', paddingRight: '40px' }}></div>
+                        <div className="swiper-button-next" style={{ color: '#98FF68', paddingLeft: '40px' }}></div>
                     </Swiper>
-                    <ArrowRightIcon m={'20px'} boxSize={[7, 9]} color={'#98FF68'} cursor={'pointer'} onClick={handleSlideNext} />
                 </Box>
             </Container>
         </>

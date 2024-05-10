@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Flex, Box, FormControl, FormLabel, Input, Select, InputGroup, InputLeftElement, InputRightElement, Button} from "@chakra-ui/react";
@@ -170,9 +169,6 @@ function CadastroProdutor() {
                 as={RouterLink} 
                 to="/home" 
                 type='submit'
-                _hover={{ 
-                  backgroundColor: '#76E1FF', // Estilo de hover para a cor de fundo
-                }} 
                 w='100%'
                 borderRadius='20px'
                 color='black'

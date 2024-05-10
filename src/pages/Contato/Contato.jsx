@@ -1,5 +1,4 @@
 import { Flex, Icon, Text, Card, CardBody, Image } from "@chakra-ui/react";
-import NavbarSemPesquisa from "../../components/NavbarSemPesquisa/NavbarSemPesquisa";
 import { FaLinkedin, FaInstagramSquare, FaGithub } from "react-icons/fa";
 import FotoGabriel from '../../img/FotoGabriel.png';
 import FotoMatheus from '../../img/FotoMatheus.png';
@@ -26,7 +25,7 @@ function Contato() {
 
 //   Matheus
   const linkedinURLMatheus = "";
-  const instagramURLMatheus = "";
+  const instagramURLMatheus = "https://www.instagram.com/matheusviniciusga/";
   const githubURLMatheus = "https://github.com/matheusviniciusga";
 
 //   Yuri
@@ -36,8 +35,8 @@ function Contato() {
 
     return (
         <div className="container">
-            <NavbarSemPesquisa />
-                <Flex flexDirection={{ base: 'column', md: 'row' }} // Alinha os itens em coluna em telas pequenas e em linha em telas médias e maiores
+           
+                <Flex mt={59} flexDirection={{ base: 'column', md: 'row' }} // Alinha os itens em coluna em telas pequenas e em linha em telas médias e maiores
                 justify="center" // Centraliza os itens horizontalmente
                 alignItems="center" // Centraliza os itens verticalmente
                 flexWrap={{ base: 'nowrap', md: 'wrap' }}>
@@ -181,7 +180,7 @@ function Contato() {
                                     rel="noopener noreferrer" 
                                     style={{ textDecoration: 'none', color: 'inherit', marginLeft: '4px' }}
                                 >
-                                    <Text _hover={{ textDecoration: 'underline' }} >matheus</Text>
+                                    <Text _hover={{ textDecoration: 'underline' }} >matheusviniciusga</Text>
                                 </a>
                             </CardBody>
                             <CardBody display="flex" alignItems="center" justifyContent="center">
@@ -237,7 +236,6 @@ function Contato() {
                         </Card>
                     </Card>
                 </Flex>
-                <Footer />
         </div>
     );
     

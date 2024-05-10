@@ -1,21 +1,26 @@
-import { Link as RouterLink } from "react-router-dom"
-import { useState, useEffect } from 'react'
-import { Flex, Box, Link, InputGroup, Input, InputRightElement, IconButton, Text, Image, Divider } from "@chakra-ui/react"
-import { Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody } from "@chakra-ui/react"
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalOverlay, Heading, Button } from '@chakra-ui/react'
-import { BellIcon, AtSignIcon, SearchIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
-import ImgNav from '../../img/Navbar.svg'
-import LogoRec from '../../img/LogoRec.svg'
-import NotiIcon from '../../icons/notificacao.svg'
-import ChatIcon from '../../icons/chat.svg'
-import PerfilIcon from '../../icons/perfil.svg'
+import { Link as RouterLink } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Flex, Box, Link, InputGroup, Input, InputRightElement, IconButton, Text, Image, Divider } from "@chakra-ui/react";
+import { Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody } from "@chakra-ui/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalOverlay, Heading, Button } from '@chakra-ui/react';
+import { BellIcon, AtSignIcon, SearchIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import ImgNav from '../../img/Navbar.svg';
+import LogoRec from '../../img/LogoRec.svg';
+import NotiIcon from '../../icons/notificacao.svg';
+import ChatIcon from '../../icons/chat.svg';
+import PerfilIcon from '../../icons/perfil.svg';
 
-function Navbar({openNotification}) {
+function Navbar({ openNotification }) {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+    const [isNotificationOpen, setNotificationOpen] = useState(false);
 
     const toggleMenu = () => {
         setMenuOpen(!isMenuOpen);
+    };
+
+    const toggleNotification = () => {
+        setNotificationOpen(!isNotificationOpen);
     };
 
     useEffect(() => {
@@ -30,18 +35,10 @@ function Navbar({openNotification}) {
         };
     }, []);
 
-    const [isNotificationOpen, setNotificationOpen] = useState(false);
-
-    const toggleNotification = () => {
-        setNotificationOpen(!isNotificationOpen);
-    };
-
     return (
         <>
             <Flex w={"auto"} h={"150px"} p={'10'} backgroundImage={`url(${ImgNav})`} alignItems={'center'} justifyContent={'space-around'}>
-                
                 <Image boxSize={["95px", "130px" ,"180px"]} src={LogoRec} />
-
                 <Box w={[300, 400, 500]} m={'20px'}>
                     <InputGroup alignItems={'center'}>
                         <Input
@@ -57,24 +54,22 @@ function Navbar({openNotification}) {
                         <InputRightElement>
                             <Link as={RouterLink} to="#">
                                 <IconButton background={'none'} borderRadius={'30px'}>
-                                    <SearchIcon color='black' boxSize={5}/>
+                                    <SearchIcon color='black' boxSize={5} />
                                 </IconButton>
                             </Link>
                         </InputRightElement>
                     </InputGroup>
                 </Box>
-                
                 {isSmallScreen && (
-                <Box>
-                    <IconButton
-                    icon={<HamburgerIcon boxSize={6} />}
-                    color={'#7ED957'}
-                    backgroundColor={'#76603F'}
-                    onClick={toggleMenu}
-                    />
-                </Box>
+                    <Box>
+                        <IconButton
+                            icon={<HamburgerIcon boxSize={6} />}
+                            color={'#7ED957'}
+                            backgroundColor={'#76603F'}
+                            onClick={toggleMenu}
+                        />
+                    </Box>
                 )}
-
                 {!isSmallScreen && (
                     <Box display={'flex'} m={'20px'}>
                         <Link pl={'10px'} pr={'10px'} onClick={toggleNotification}>
@@ -109,7 +104,6 @@ function Navbar({openNotification}) {
                     </Box>
                 )}
             </Flex>
-
             <Drawer placement="right" onClose={toggleMenu} isOpen={isMenuOpen}>
                 <DrawerOverlay>
                     <DrawerContent backgroundColor={'#7CC152'}>
@@ -143,7 +137,6 @@ function Navbar({openNotification}) {
                     </DrawerContent>
                 </DrawerOverlay>
             </Drawer>
-
             <Modal
             closeOnOverlayClick={false}
             isOpen={isNotificationOpen}
@@ -181,7 +174,7 @@ function Navbar({openNotification}) {
                 </ModalContent>
             </Modal>
         </>
-    )
+    );
 }
 
 export default Navbar;

@@ -18,9 +18,6 @@ function Cadastro() {
                     as={RouterLink} 
                     to="/cadastroCliente" 
                     type='submit'
-                    _hover={{ 
-                        backgroundColor: '#76E1FF', // Estilo de hover para a cor de fundo
-                    }} 
                     h='88'
                     w='360px'
                     borderRadius='20px'
@@ -36,9 +33,6 @@ function Cadastro() {
                     as={RouterLink} 
                     to="/cadastroProdutor" 
                     type='submit'
-                    _hover={{ 
-                        backgroundColor: '#76E1FF', // Estilo de hover para a cor de fundo
-                    }} 
                     h='88'
                     w='360px'
                     borderRadius='20px'

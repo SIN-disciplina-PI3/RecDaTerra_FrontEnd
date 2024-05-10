@@ -1,8 +1,8 @@
-import './Perfilprodutor.css'
-
 function PerfilProdutor() {
     return (
-        <h1>Perfil do Produtor</h1>
+        <div className="container">
+            <h1>Perfil do Produtor</h1>
+        </div>
     )
 }
 

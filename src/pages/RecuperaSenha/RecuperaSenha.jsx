@@ -7,7 +7,7 @@ function RecuperarSenha() {
     return (
         <>
             <Container>
-                <Box textAlign={'center'} m={'80px'}>
+                <Box textAlign={'center'} m={'50px'}>
                     <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                 </Box>
                 <Box textAlign={'center'} mb={'35px'}>
@@ -30,7 +30,7 @@ function RecuperarSenha() {
                         </InputGroup>
                     </FormControl>
                 </Box>
-                    <Box textAlign={'center'} mt={'40px'}>
+                    <Box textAlign={'center'} mt={'40px'} mb={'40px'}>
                         <Link as={RouterLink} to="/redefinirsenha">
                             <Button
                                 w={'100%'}
