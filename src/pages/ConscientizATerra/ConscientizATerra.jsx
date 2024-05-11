@@ -1,6 +1,8 @@
 import { Flex, Box, Center, Text, Image } from '@chakra-ui/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
+import NationalGeographic from '../../img/NationalGeographic'
+import JoaoCampos1 from '../../img/JoaoCampos1'
 
 function ConscientizAterra() {
     return (
@@ -16,7 +18,7 @@ function ConscientizAterra() {
                 </Center>
                 <Box w="90%" h="auto" display="flex" justifyContent="center" alignItems="center" pt={70}>
                     <Swiper
-                        slidesPerView={3} 
+                        slidesPerView={2} 
                         spaceBetween={30}
                         centeredSlides={true}
                         loop={true} 
@@ -30,23 +32,23 @@ function ConscientizAterra() {
                         className="mySwiper"
                     >
                         <SwiperSlide style={{display: 'flex', justifyContent: 'center'}}>
-                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="550px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
+                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="530px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
                                 <Text textAlign="center" mt={3}>Texto do Slide 1</Text>
                                 <Center>
-                                    <Image src="imagem1.jpg" alt="Imagem 1" />
+                                    <Image src={NationalGeographic} alt="Imagem 1" />
                                 </Center>
                             </Box>
                         </SwiperSlide>
                         <SwiperSlide style={{display: 'flex', justifyContent: 'center'}}>
-                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="550px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
+                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="530px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
                                 <Text textAlign="center" mt={3}>Texto do Slide 2</Text>
                                 <Center>
-                                    <Image src="imagem2.jpg" alt="Imagem 2" />
+                                    <Image src={JoaoCampos1} alt="Imagem 2" />
                                 </Center>
                             </Box>
                         </SwiperSlide>
                         <SwiperSlide style={{display: 'flex', justifyContent: 'center'}}>
-                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="550px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
+                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="530px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
                                 <Text textAlign="center" mt={3}>Texto do Slide 3</Text>
                                 <Center>
                                     <Image src="imagem3.jpg" alt="Imagem 3" />
@@ -54,7 +56,7 @@ function ConscientizAterra() {
                             </Box>
                         </SwiperSlide>
                         <SwiperSlide style={{display: 'flex', justifyContent: 'center'}}>
-                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="550px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
+                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="530px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
                                 <Text textAlign="center" mt={3}>Texto do Slide 3</Text>
                                 <Center>
                                     <Image src="imagem3.jpg" alt="Imagem 3" />
@@ -62,7 +64,7 @@ function ConscientizAterra() {
                             </Box>
                         </SwiperSlide>
                         <SwiperSlide style={{display: 'flex', justifyContent: 'center'}}>
-                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="550px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
+                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="530px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
                                 <Text textAlign="center" mt={3}>Texto do Slide 3</Text>
                                 <Center>
                                     <Image src="imagem3.jpg" alt="Imagem 3" />
@@ -70,7 +72,7 @@ function ConscientizAterra() {
                             </Box>
                         </SwiperSlide>
                         <SwiperSlide style={{display: 'flex', justifyContent: 'center'}}>
-                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="550px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
+                            <Box bg="#7ED957" color="white" p={4} borderRadius="20px" width="550px" height="530px" display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
                                 <Text textAlign="center" mt={3}>Texto do Slide 3</Text>
                                 <Center>
                                     <Image src="imagem3.jpg" alt="Imagem 3" />

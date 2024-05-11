@@ -26,7 +26,7 @@ function Footer() {
 
     return (
         <footer>
-            <Flex w={"100%"} h={"150px"} p={'10'} backgroundColor={'#7ED957'} alignItems={'center'} justifyContent={'space-around'}>
+            <Flex w={"100%"} h={"150px"} p={'10'} backgroundColor={'#7ED957'} alignItems={'center'} justifyContent={'space-around'} mt={'40px'}>
                 <Box>
                     <img src={logo} alt="" style={{ width: isSmallScreen ? '120px' : '256px', marginLeft: isSmallScreen ? '-20px' : '20px' }} />
                 </Box>
