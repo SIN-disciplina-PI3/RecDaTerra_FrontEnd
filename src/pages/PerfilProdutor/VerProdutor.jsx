@@ -60,8 +60,8 @@ function VerProdutor() {
                 <Box>
                     <Heading color={'white'}>Onde Encontrar o Láctea</Heading>
                 </Box>
-                <Box>
-                    <AspectRatio maxW={'600px'} m={'20px'} border={'2px solid black'}>
+                <Box position={'relative'} mx={'auto'} mb={'20px'} maxW={'600px'}>
+                    <AspectRatio ratio={16 / 9} maxW={'600px'} m={'20px'} border={'2px solid black'}>
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.4090385997188!2d-34.872593!3d-8.059692199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18a2d9a71009%3A0xd8faf15c291bea0!2sCais%20do%20Apolo%2C%200%20-%20Recife%2C%20PE%2C%2050030-220!5e0!3m2!1spt-BR!2sbr!4v1715542184300!5m2!1spt-BR!2sbr"
                         ></iframe>
