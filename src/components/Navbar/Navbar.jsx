@@ -91,7 +91,7 @@ function Navbar({ openNotification }) {
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
                             <ChatIcon color='black' boxSize={8} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
-                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/perfilcliente">
+                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/vizualizacliente">
                             <Icon as={CgProfile} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/login">

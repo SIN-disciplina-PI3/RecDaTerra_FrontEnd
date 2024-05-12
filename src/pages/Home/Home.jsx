@@ -193,7 +193,7 @@ function Home() {
                                 <Divider borderWidth={'1px'} borderColor={'black'}  />
                                 <Box m={'5px'} pt={'15px'} display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
                                     <Image src={ImgProdutor} alt='Imagem de perfil do produtor' />
-                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/perfilprodutor">Lactéa</Link></Text>
+                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link></Text>
                                 </Box>
                             </CardFooter>
                         </Card>
@@ -270,7 +270,7 @@ function Home() {
                                 <Divider borderWidth={'1px'} borderColor={'black'}  />
                                 <Box m={'5px'} pt={'15px'} display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
                                     <Image src={ImgProdutor} alt='Imagem de perfil do produtor' />
-                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/perfilprodutor">Lactéa</Link></Text>
+                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link></Text>
                                 </Box>
                             </CardFooter>
                         </Card>
@@ -347,7 +347,7 @@ function Home() {
                                 <Divider borderWidth={'1px'} borderColor={'black'}  />
                                 <Box m={'5px'} pt={'15px'} display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
                                     <Image src={ImgProdutor} alt='Imagem de perfil do produtor' />
-                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/perfilprodutor">Lactéa</Link></Text>
+                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link></Text>
                                 </Box>
                             </CardFooter>
                         </Card>
@@ -424,7 +424,7 @@ function Home() {
                                 <Divider borderWidth={'1px'} borderColor={'black'}  />
                                 <Box m={'5px'} pt={'15px'} display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
                                     <Image src={ImgProdutor} alt='Imagem de perfil do produtor' />
-                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/perfilprodutor">Lactéa</Link></Text>
+                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link></Text>
                                 </Box>
                             </CardFooter>
                         </Card>

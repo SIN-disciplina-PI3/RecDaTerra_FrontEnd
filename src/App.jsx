@@ -19,7 +19,9 @@ import Chat from './pages/Chat/Chat';
 import ConscientizAterra from './pages/ConscientizATerra/ConscientizATerra';
 import Login from './pages/Login/Login';
 import PerfilCliente from './pages/PerfilCliente/PerfilCliente';
+import VerCliente from './pages/PerfilCliente/VerCliente';
 import PerfilProdutor from './pages/PerfilProdutor/PerfilProdutor';
+import VerProdutor from './pages/PerfilProdutor/VerProdutor';
 import Produtos from './pages/Produtos/Produtos';
 import Sobre from './pages/Sobre/Sobre';
 import EsqueciSenha from './pages/EsqueciSenha/EsqueciSenha';
@@ -57,7 +59,9 @@ function App() {
           <Route path='/conscientizaterra' element={<ConscientizAterra />} />
           <Route path='/contato' element={<Contato />} />
           <Route path='/perfilcliente' element={<PerfilCliente />} />
+          <Route path='/vizualizacliente' element={<VerCliente />} />
           <Route path='/perfilprodutor' element={<PerfilProdutor />} />
+          <Route path='/vizualizaprodutor' element={<VerProdutor />} />
           <Route path='/produtos' element={<Produtos />} />
         </Routes>
         <Footer />
