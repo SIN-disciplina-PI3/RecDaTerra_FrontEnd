@@ -140,7 +140,7 @@ function Navbar({ openNotification }) {
                                 <Link as={RouterLink} to="/login">
                                     <Box display={'flex'} alignItems={'center'}>
                                         <Icon as={FiLogOut} color='black' boxSize={9} mr={'15px'} />
-                                        <Text color={'black'}>LogoOut</Text>
+                                        <Text color={'black'}>Sair</Text>
                                     </Box>
                                 </Link>
                             </Box>
