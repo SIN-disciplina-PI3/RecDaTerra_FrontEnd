@@ -146,7 +146,7 @@ function ModalProdutor({ isOpen, onOpen, onClose }) {
             <ModalOverlay />
             <ModalContent bgColor={'#76603F'}>
                 <ModalHeader fontSize={'32px'} color={'#98FF68'}>Cadastre duas informações adicionais</ModalHeader>
-                <ModalCloseButton />
+                <ModalCloseButton backgroundColor={'#98FF68'} />
                 <ModalBody pb={6}>
                     <Text color={'#98FF68'} pt={3} pb={3} fontSize={20}>Endereço</Text>
                     <FormControl isRequired>

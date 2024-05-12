@@ -6,8 +6,8 @@ import { Input, InputGroup, InputLeftAddon, Button } from "@chakra-ui/react"
 function RecuperarSenha() {
     return (
         <>
-            <Container>
-                <Box textAlign={'center'} m={'50px'}>
+            <Container mb={'173px'}>
+                <Box textAlign={'center'} m={'80px'}>
                     <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                 </Box>
                 <Box textAlign={'center'} mb={'35px'}>

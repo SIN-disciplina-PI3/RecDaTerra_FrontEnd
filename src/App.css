@@ -6,16 +6,6 @@
     min-height: 100vh;
 }
 
-Button {
-    width: 100%;
-    border-radius: 20px;
-    color: black;
-    font-weight: bold;
-    background-color: #98FF68;
-    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.1); /* Sem aspas */
-    transition: all 0.3s ease-in-out;
-}
-
 Button:hover {
     background-color: #76E1FF; /* Sem aspas */
 }

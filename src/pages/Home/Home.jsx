@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import {Icon} from '@chakra-ui/react'
 import { IoMdSend } from "react-icons/io";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
-import { ArrowLeftIcon, ArrowRightIcon, InfoOutlineIcon, SmallAddIcon, ExternalLinkIcon } from '@chakra-ui/icons'
+import { InfoOutlineIcon, SmallAddIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import { Link as RouterLink } from "react-router-dom"
-import { Avatar, Flex, Heading, Box, Container, Image, Text, Link, Divider, Stat, StatNumber, Grid, GridItem } from '@chakra-ui/react'
+import { Heading, Box, Container, Image, Text, Link, Divider, Stat, StatNumber, Grid, GridItem } from '@chakra-ui/react'
 import { Card, CardHeader, CardBody, CardFooter, Input, InputGroup, InputRightElement, InputLeftElement } from '@chakra-ui/react'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules'
@@ -115,7 +115,7 @@ function Home() {
 
             <Divider mx={'auto'} w={['320px', '380px', '450px', '750px', '1000px']} mt={'80px'} mb={'60px'} borderRadius={'25px'} borderWidth={'2px'} color={'#513636'} />
 
-            <Container maxW={'100%'}>
+            <Container maxW={'100%'} mb={'20px'}>
                 <Box mb={'40px'} textAlign={'center'}>
                     <Heading size='2xl' color={'#98FF68'}>Eventos</Heading>
                     <Text color={'white'}>Aqui você poderá acompanhar os eventos mais recentes em Recife Região</Text>

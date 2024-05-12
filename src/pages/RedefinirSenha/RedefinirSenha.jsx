@@ -6,8 +6,8 @@ import { Input, InputGroup, Button } from "@chakra-ui/react"
 function RedefinirSenha() {
     return (
         <>
-            <Container>
-                <Box textAlign={'center'} m={'50px'}>
+            <Container mb={'176px'}>
+                <Box textAlign={'center'} m={'80px'}>
                     <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                 </Box>
                 <Box>

@@ -41,7 +41,7 @@ function App() {
           location.pathname === '/cadastro' ||
           location.pathname === '/cadastroCliente' ||
           location.pathname === '/cadastroProdutor' ? <NavbarLogin /> :
-          <Navbar openNotification={onOpen} />}
+          <Navbar />}
         <Routes>
           <Route path='/' element={<PaginaInicial />} />
           <Route path='/login' element={<Login />} />
@@ -49,7 +49,6 @@ function App() {
           <Route path='/recuperasenha' element={<RecuperaSenha />} />
           <Route path='/redefinirsenha' element={<RedefinirSenha />} />
           <Route path='/home' element={<Home />} />
-          <Route path='/noti' element={<Noti isOpen={isOpen} onClose={onClose} />} />
           <Route path='/sobre' element={<Sobre />} />
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path='/cadastrocliente' element={<CadastroCliente />} />

@@ -7,8 +7,8 @@ import { EmailIcon } from '@chakra-ui/icons'
 function EsqueciSenha() {
     return (
         <>
-            <Container>
-                <Box textAlign={'center'} m={'50px'}>
+            <Container mb={'197px'}>
+                <Box textAlign={'center'} m={'80px'}>
                     <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                 </Box>
                 <Box textAlign={'center'} mb={'35px'}>
