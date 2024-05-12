@@ -31,7 +31,7 @@ function Navbar({ openNotification }) {
 
     return (
         <>
-            <Flex w={"auto"} h={"150px"} p={'10'} backgroundImage={`url(${ImgNav})`} alignItems={'center'} justifyContent={'space-around'}>
+            <Flex w={"auto"} h={"150px"} p={'10'} backgroundImage={`url(${ImgNav})`} alignItems={'center'} justifyContent={'space-around'} mb={'40px'}>
 
                 <Link as={RouterLink} to="/home">
                     <Image boxSize={["95px", "130px", "180px"]} src={LogoRec} _hover={{ transform: 'scale(1.1)' }}/>
