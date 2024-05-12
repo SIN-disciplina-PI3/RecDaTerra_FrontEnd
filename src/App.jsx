@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useDisclosure } from "@chakra-ui/react";
 
-/*Importação doscomponentes*/
+/*Importação dos componentes*/
 import NavbarVisi from './components/NavbarVisi/NavbarVisi'
 import NavbarLogin from './components/NavbarLogin/NavbarLogin'
 import Navbar from './components/Navbar/Navbar'
