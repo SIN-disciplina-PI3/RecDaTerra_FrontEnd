@@ -6,7 +6,7 @@ function Sobre() {
         <div className="container">
             
             <Flex direction="column" align="center">
-                <Box className="sobre-container" maxW="900px" textAlign="justify" mx="auto" p="20px" mt={100}>
+                <Box className="sobre-container" maxW="900px" textAlign="justify" mx="auto" p="20px">
                     <Center mb="20px">
                         <div className="title">
                             <Text as="h1">Sobre o RecDaTerra</Text>
