@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 import { useDisclosure } from "@chakra-ui/react";
 
 /*Importação dos componentes*/
@@ -27,7 +27,8 @@ import Sobre from './pages/Sobre/Sobre';
 import EsqueciSenha from './pages/EsqueciSenha/EsqueciSenha';
 import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha';
 import RecuperaSenha from './pages/RecuperaSenha/RecuperaSenha';
-import Contato from './pages/Contato/Contato'
+import Contato from './pages/Contato/Contato';
+import Pag404 from './pages/PaginaErro/Pag404';
 
 function App() {
   const location = useLocation();
@@ -42,7 +43,8 @@ function App() {
           location.pathname === '/redefinirsenha' ||
           location.pathname === '/cadastro' ||
           location.pathname === '/cadastroCliente' ||
-          location.pathname === '/cadastroProdutor' ? <NavbarLogin /> :
+          location.pathname === '/cadastroProdutor'||
+          location.pathname === '/404' ? <NavbarLogin /> :
           <Navbar />}
         <Routes>
           <Route path='/' element={<PaginaInicial />} />
@@ -63,6 +65,8 @@ function App() {
           <Route path='/perfilprodutor' element={<PerfilProdutor />} />
           <Route path='/vizualizaprodutor' element={<VerProdutor />} />
           <Route path='/produtos' element={<Produtos />} />
+          <Route path='/404' element={<Pag404 />} />
+          <Route path='*' element={<Navigate to="/404" />} />
         </Routes>
         <Footer />
       </>
