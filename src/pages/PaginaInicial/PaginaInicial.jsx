@@ -52,7 +52,7 @@ function PaginaInicial() {
                         <Heading fontSize={'60px'} color={'#98FF68'}>Bem Vindo ao RecDaTerra</Heading>
                         <Text color={'white'}>Conectando produtores Locais e Pernambucanos Conscientes</Text>
                     </Box>
-                    <Box textAlign={'center'} mb={['20px', '0px']}>
+                    <Box pr={500} textAlign={'center'} mb={['20px', '0px']}>
                         <Link as={RouterLink} to="/cadastro">
                             <Button
                                 pl={'30px'} pr={'30px'}
@@ -62,12 +62,13 @@ function PaginaInicial() {
                                 backgroundColor={'#98FF68'}
                                 boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
                                 transition='all 0.3s ease-in-out'
+                                width={286}
                             >Cadastre-se já</Button>
                         </Link>
                         <Box justifyContent={'space-around'}>
                             <Text color={'white'}>Ou</Text>
                         </Box>
-                        <Link as={RouterLink} to="#">
+                        <Link as={RouterLink} to="/home">
                             <Text color={'white'} _hover={{ textDecoration: 'underline', color: 'white' }}>Entre como Visitante</Text>
                         </Link>
 
