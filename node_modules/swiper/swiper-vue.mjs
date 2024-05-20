@@ -1,5 +1,5 @@
 /**
- * Swiper Vue 11.1.1
+ * Swiper Vue 11.1.3
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: April 9, 2024
+ * Released on: May 13, 2024
  */
 
 import { h, ref, onUpdated, provide, watch, nextTick, onMounted, onBeforeUnmount, onBeforeUpdate, computed, inject } from 'vue';
@@ -35,7 +35,7 @@ function getChildren(originalSlots, slidesRef, oldSlidesRef) {
       if (slotName === 'default') slotName = 'container-end';
       if (isFragment && vnode.children) {
         getSlidesFromElements(vnode.children, slotName);
-      } else if (vnode.type && (vnode.type.name === 'SwiperSlide' || vnode.type.name === 'AsyncComponentWrapper')) {
+      } else if (vnode.type && (vnode.type.name === 'SwiperSlide' || vnode.type.name === 'AsyncComponentWrapper') || vnode.componentOptions && vnode.componentOptions.tag === 'SwiperSlide') {
         slides.push(vnode);
       } else if (slots[slotName]) {
         slots[slotName].push(vnode);
@@ -89,9 +89,15 @@ function renderVirtual(swiperRef, slides, virtualData) {
     if (!slide.props.style) slide.props.style = {};
     slide.props.swiperRef = swiperRef;
     slide.props.style = style;
-    return h(slide.type, {
-      ...slide.props
-    }, slide.children);
+    if (slide.type) {
+      return h(slide.type, {
+        ...slide.props
+      }, slide.children);
+    } else if (slide.componentOptions) {
+      return h(slide.componentOptions.Ctor, {
+        ...slide.props
+      }, slide.componentOptions.children);
+    }
   });
 }
 
