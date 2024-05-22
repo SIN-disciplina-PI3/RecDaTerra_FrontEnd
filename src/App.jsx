@@ -1,12 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import { useLocation, Navigate } from 'react-router-dom';
-import { useDisclosure } from "@chakra-ui/react";
 
 /*Importação dos componentes*/
 import NavbarVisi from './components/NavbarVisi/NavbarVisi'
 import NavbarLogin from './components/NavbarLogin/NavbarLogin'
 import Navbar from './components/Navbar/Navbar'
-import Noti from './components/ModalNotificacao/ModalNotificacao'
 import Footer from './components/Footer/Footer'
 
 /*Importação das Páginas*/
@@ -32,7 +30,6 @@ import Pag404 from './pages/PaginaErro/Pag404';
 
 function App() {
   const location = useLocation();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
       <>
