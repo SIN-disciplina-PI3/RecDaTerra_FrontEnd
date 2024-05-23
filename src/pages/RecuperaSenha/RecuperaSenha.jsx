@@ -1,18 +1,14 @@
 import { Link as RouterLink } from "react-router-dom"
-import { Box, Container, Text, Link } from "@chakra-ui/react"
+import { Heading, Box, Container, Text, Link } from "@chakra-ui/react"
 import { FormControl, FormLabel } from '@chakra-ui/react'
 import { Input, InputGroup, InputLeftAddon, Button } from "@chakra-ui/react"
-import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 
-function RecuperaSenha() {
+function RecuperarSenha() {
     return (
-        <div className="container">
-            <NavbarLogin />
-            <Container>
+        <>
+            <Container mb={'173px'}>
                 <Box textAlign={'center'} m={'80px'}>
-                <div className="title">
-                        <h1>Redefinir Senha</h1>
-                    </div>
+                    <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                 </Box>
                 <Box textAlign={'center'} mb={'35px'}>
                     <Text fontWeight='regular' color={'white'}>Informe o código de verificação de 6 dígitos enviado para o email *****final@gmail.com</Text>
@@ -34,7 +30,7 @@ function RecuperaSenha() {
                         </InputGroup>
                     </FormControl>
                 </Box>
-                    <Box textAlign={'center'} mt={'40px'}>
+                    <Box textAlign={'center'} mt={'40px'} mb={'40px'}>
                         <Link as={RouterLink} to="/redefinirsenha">
                             <Button
                                 w={'100%'}
@@ -48,8 +44,8 @@ function RecuperaSenha() {
                         </Link>
                     </Box>
             </Container>
-        </div>
+        </>
     )
 }
 
-export default RecuperaSenha;
+export default RecuperarSenha;

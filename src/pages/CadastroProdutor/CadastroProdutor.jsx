@@ -1,10 +1,8 @@
-/* eslint-disable react/no-children-prop */
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Flex, Box, FormControl, FormLabel, Input, Select, InputGroup, InputLeftElement, InputRightElement, Button} from "@chakra-ui/react";
 import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import VetorProdutor from '../../img/VetorProdutor.svg';
-import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import { CgProfile } from "react-icons/cg";
 import { HiMiniIdentification } from "react-icons/hi2";
 
@@ -45,8 +43,7 @@ function CadastroProdutor() {
 
   return (
     <div className='container'>
-      <NavbarLogin />
-      <Flex justify="center" align="center">
+      <Flex justify="center" align="center" mt = { 100}>
        
           <Box className='left-panel' mr={8}>
             <img src={VetorProdutor} alt="Vetor Produtor" />
@@ -57,7 +54,10 @@ function CadastroProdutor() {
             <Flex direction="column" align="stretch" maxW="600px">
                 <div className="title">
               <Box mb={4} textAlign="center">
-                <h1>Cadastro como Produtor</h1>
+
+                <h1 
+                style={{color: "white"}}>Cadastro como Produtor</h1>
+
               </Box>
                 </div>
 
@@ -169,9 +169,6 @@ function CadastroProdutor() {
                 as={RouterLink} 
                 to="/home" 
                 type='submit'
-                _hover={{ 
-                  backgroundColor: '#76E1FF', // Estilo de hover para a cor de fundo
-                }} 
                 w='100%'
                 borderRadius='20px'
                 color='black'
@@ -188,5 +185,6 @@ function CadastroProdutor() {
     </div>
   );
 }
+
 
 export default CadastroProdutor;
