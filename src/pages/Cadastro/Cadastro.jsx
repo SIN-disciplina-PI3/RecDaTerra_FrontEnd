@@ -5,7 +5,9 @@ function Cadastro() {
     return (
         <div className='container'>
             <div className="title">
-                <h1 style={{ color: 'white', marginTop: '10%' }}>Você deseja se cadastrar como:</h1>
+                <h1 style={{ color: 'white',
+ marginTop: '10%',
+textAlign: 'center' }}>Você deseja se cadastrar como:</h1>
             </div>
             <Flex 
                 alignItems='center'
