@@ -13,6 +13,7 @@ function Cadastro() {
                 p='30px'
                 mt='50px'
             >
+                {/*                 ----------------------BUTÃO PARA CADASTRO DO CLIENTE--------------------------------- */}
                 <Button
                     mr='100px'
                     as={RouterLink} 
@@ -29,6 +30,7 @@ function Cadastro() {
                 >
                     Cliente
                 </Button>
+{/*                 ----------------------BUTÃO PARA CADASTRO DO PRODUTOR--------------------------------- */}
                 <Button
                     as={RouterLink} 
                     to="/cadastroProdutor" 
