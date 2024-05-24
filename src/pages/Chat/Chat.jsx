@@ -1,3 +1,4 @@
+// Chat.js
 import React, { useState } from 'react';
 import { Box, Flex, Text, VStack, Input, IconButton, Image, Center, InputGroup, InputRightElement } from '@chakra-ui/react';
 import { FiSend } from 'react-icons/fi';
@@ -5,6 +6,7 @@ import { IoMdAttach } from "react-icons/io";
 import { BsEmojiGrin } from "react-icons/bs";
 import Picker from 'emoji-picker-react';
 import LacteaChat from '../../img/LacteaChat.png';
+import Chatbot from '../../components/ChatBot/Chatbot'; // Importe o componente do chatbot
 
 function Chat() {
   const [message, setMessage] = useState('');
@@ -23,9 +25,15 @@ function Chat() {
 
   const handleSendMessage = () => {
     if (message.trim()) {
-      const newMessage = { text: message, timestamp: new Date().toLocaleTimeString() };
+      const newMessage = { text: message, timestamp: new Date().toLocaleTimeString(), fromUser: true };
       setMessages(prevMessages => [...prevMessages, newMessage]);
       setMessage('');
+
+      // Simular resposta do chatbot após 1 segundo
+      setTimeout(() => {
+        const botMessage = { text: `Você disse: ${message}`, timestamp: new Date().toLocaleTimeString(), fromUser: false };
+        setMessages(prevMessages => [...prevMessages, botMessage]);
+      }, 1000);
     }
   };
 
@@ -52,9 +60,15 @@ function Chat() {
           <Box flex="1" overflowY="auto" mb={4}>
             <VStack align="start" spacing={4}>
               {messages.map((msg, index) => (
-                <Box key={index} bg="#76603F" p={3} borderRadius="md" alignSelf="flex-start">
-                  <Text color="white">{msg.text}</Text>
-                  <Text color="white" fontSize="xs" align="right">{msg.timestamp}</Text>
+                <Box 
+                  key={index} 
+                  bg={msg.fromUser ? "#76603F" : "#7AC42A"} // Definindo o fundo com base no remetente da mensagem
+                  p={3} 
+                  borderRadius="md" 
+                  alignSelf={msg.fromUser ? "flex-start" : "flex-end"}
+                >
+                  <Text color={msg.fromUser ? "white" : "black"}>{msg.text}</Text>
+                  <Text color={msg.fromUser ? "white" : "black"} fontSize="xs" align="right">{msg.timestamp}</Text>
                 </Box>
               ))}
             </VStack>
@@ -89,6 +103,11 @@ function Chat() {
             </InputRightElement>
           </InputGroup>
         </Flex>
+
+        {/* Componente do Chatbot */}
+        <Box position="absolute" bottom="100px" right="20px">
+          <Chatbot style={{ backgroundColor: "#7AC42A", color: "white" }} /> {/* Estilo específico para o chatbot */}
+        </Box>
       </Box>
     </Center>
   );

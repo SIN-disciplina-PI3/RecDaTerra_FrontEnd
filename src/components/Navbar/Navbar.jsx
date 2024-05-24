@@ -88,7 +88,7 @@ function Navbar({ openNotification }) {
                             transition={'all 0.3s ease-in-out'}
                             _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
-                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="#">
+                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/chat">
                             <ChatIcon color='black' boxSize={8} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/vizualizacliente">
