@@ -91,7 +91,7 @@ function Navbar({ openNotification }) {
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/chat">
                             <ChatIcon color='black' boxSize={8} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
-                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/vizualizacliente">
+                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/perfilcliente">
                             <Icon as={CgProfile} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/login">
@@ -123,14 +123,14 @@ function Navbar({ openNotification }) {
                                     </Box>
                                 </Link>
                                 <Divider mt={'10px'} mb={'10px'} color={'black'} />
-                                <Link as={RouterLink} to="#">
+                                <Link as={RouterLink} to="/chat">
                                     <Box display={'flex'} alignItems={'center'}>
                                         <ChatIcon color='black' boxSize={8} mr={'15px'} />
                                         <Text color={'black'}>Chat</Text>
                                     </Box>
                                 </Link>
                                 <Divider mt={'10px'} mb={'10px'} color={'black'} />
-                                <Link as={RouterLink} to="#">
+                                <Link as={RouterLink} to="/visualizacliente">
                                     <Box display={'flex'} alignItems={'center'}>
                                         <Icon as={CgProfile} color='black' boxSize={9} mr={'15px'} />
                                         <Text color={'black'}>Perfil</Text>

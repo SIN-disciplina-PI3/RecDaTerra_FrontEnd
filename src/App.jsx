@@ -58,7 +58,7 @@ function App() {
           <Route path='/conscientizaterra' element={<ConscientizAterra />} />
           <Route path='/contato' element={<Contato />} />
           <Route path='/perfilcliente' element={<PerfilCliente />} />
-          <Route path='/vizualizacliente' element={<VerCliente />} />
+          <Route path='/visualizacliente' element={<VerCliente />} />
           <Route path='/perfilprodutor' element={<PerfilProdutor />} />
           <Route path='/vizualizaprodutor' element={<VerProdutor />} />
           <Route path='/produtos' element={<Produtos />} />

@@ -249,7 +249,7 @@ function ModalProdutor({ isOpen, onOpen, onClose }) {
 
                 <ModalFooter>
                 <Button colorScheme='green' w={'1500px'} mr={3} style={{ boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
-                Cadastrar Informações
+                Cadastrar
             </Button>
             <Button colorScheme='red' w={'750px'} onClick={onClose} style={{ boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
                 Cancelar
