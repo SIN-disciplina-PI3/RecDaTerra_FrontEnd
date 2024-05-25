@@ -35,7 +35,9 @@ function Contato() {
 
     return (
         <div className="container">
-           
+           <div className="title">
+            <h1>Contato</h1>
+           </div>
                 <Flex mt={59} flexDirection={{ base: 'column', md: 'row' }} // Alinha os itens em coluna em telas pequenas e em linha em telas médias e maiores
                 justify="center" // Centraliza os itens horizontalmente
                 alignItems="center" // Centraliza os itens verticalmente

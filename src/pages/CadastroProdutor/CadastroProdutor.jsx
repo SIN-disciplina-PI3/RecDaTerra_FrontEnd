@@ -43,12 +43,11 @@ function CadastroProdutor() {
 
   return (
     <div className='container'>
-      <Flex justify="center" align="center" mt = { 100}>
+      <Flex justify="center" align="center" mt = { 100} flexDirection={{ base: 'column', md: 'row' }}>
        
           <Box className='left-panel' mr={8}>
             <img src={VetorProdutor} alt="Vetor Produtor" />
             </Box>
-            
 
           <Box className='right-panel'>
             <Flex direction="column" align="stretch" maxW="600px">
