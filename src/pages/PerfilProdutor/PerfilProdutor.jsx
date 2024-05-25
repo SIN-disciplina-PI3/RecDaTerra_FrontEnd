@@ -40,7 +40,7 @@ function PerfilProdutor() {
 
     return (
         <div className="container">
-            <Flex justify="center" align="center" mt={10}>
+            <Flex justify="center" align="center" mt={10} flexDirection={{ base: 'column', md: 'row' }}>
                 {/* ---------------------Painel Esquerdo:------------------------- */}
                 <Box className="Left-Panel" 
                      padding="30px"
@@ -226,7 +226,7 @@ function PerfilProdutor() {
 </Box>
 
     {/* ------------------------------DIVISÃO DE PAINEIS: PAINEL DE ENDEREÇO---------------------------------- */}
-                <Box className='right-panel' mt={15} ml={50} padding='50px' border="1px solid white">
+        <Box className='right-panel' mt={15} ml={50} padding='50px' border="1px solid white">
     <Flex direction="column" align="stretch" maxW="600px">
         <div className="title">
             <Box color={'white'} mb={4} textAlign="center">
