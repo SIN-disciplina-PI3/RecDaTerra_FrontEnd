@@ -10,8 +10,8 @@ function Login() {
     const handleClick = () => setShow(!show)
 
     return (
-        <div className="container">
-            <Container>
+        <>
+            <Container mb={'148px'}>
                 <Box textAlign={'center'} m={'50px'}>
                     <Heading color={'white'} fontWeight='bold'>Faça seu Login</Heading>
                 </Box>
@@ -76,7 +76,7 @@ function Login() {
                     </Flex>
                 </Box>
             </Container>
-        </div>
+        </>
     )
 }
 
