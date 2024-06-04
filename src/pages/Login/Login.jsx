@@ -9,11 +9,43 @@ function Login() {
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
 
+    const [senha, setSenha] = useState('');
+    const [erro, setErro] = useState('');
+
+    function eventoSenha(event) {
+        const novaSenha = event.target.value;
+        setSenha(novaSenha);
+
+        if (validarSenha(novaSenha) && novaSenha.length >= 6) {
+            setErro('');
+        } else {
+            setErro('A senha deve conter 6 caracteres com pelo menos uma letra e um número.');
+        }
+    }
+
+    function checkSenha(event) {
+        const novaSenha = event.target.value;
+        
+        if (novaSenha.trim() === '') {
+            setSenha('');
+            setErro('');
+            return;
+        }
+    }
+
+    function validarSenha(senha) {
+        const regex = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
+        return regex.test(senha);
+    }
+
     return (
         <>
             <Container mb={'148px'}>
                 <Box textAlign={'center'} m={'50px'}>
                     <Heading color={'white'} fontWeight='bold'>Faça seu Login</Heading>
+                    {erro && (
+                        <span style={{color: 'white'}}>{erro}</span>
+                    )}
                 </Box>
                 <Box>
                     <FormControl>
@@ -22,7 +54,7 @@ function Login() {
                             <InputLeftElement pointerEvents='none'>
                                 <EmailIcon color='#76603F' />
                             </InputLeftElement>
-                            <Input 
+                            <Input
                                 variant='outline'
                                 type={'email'}
                                 placeholder={'Digite o seu e-mail...'}
@@ -30,6 +62,7 @@ function Login() {
                                 fontWeight='light'
                                 border={'none'}
                                 boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
+                                required
                             />
                         </InputGroup>
                         <FormLabel color={'white'} mt={'8px'} fontWeight='regular'>Senha</FormLabel>
@@ -38,6 +71,8 @@ function Login() {
                                 <LockIcon color='#76603F' />
                             </InputLeftElement>
                             <Input
+                                onChange={eventoSenha}
+                                value={senha}
                                 variant='outline'
                                 type={show ? 'text' : 'password'}
                                 placeholder='Digite sua senha...'
@@ -45,6 +80,7 @@ function Login() {
                                 fontWeight='light'
                                 border={'none'}
                                 boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
+                                onBlur={checkSenha}
                             />
                             <InputRightElement width='4.5rem'>
                                 <Button h='1.5rem' size='xs' onClick={handleClick} boxShadow='3px 3px 7px rgba(0, 0, 0, 0.1)'>
