@@ -7,6 +7,7 @@ import NavbarVisi from './components/NavbarVisi/NavbarVisi'
 import NavbarLogin from './components/NavbarLogin/NavbarLogin'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
+import Topo from './components/TopoPag/TopoDaPag'
 
 /*Importação das Páginas*/
 import Home from './pages/Home/Home';
@@ -49,6 +50,7 @@ function App() {
             <Navbar />}
           </Box>
           <Box as={"main"} flex={"1"}>
+            <Topo />
             <Routes>
               <Route path='/' element={<PaginaInicial />} />
               <Route path='/login' element={<Login />} />
