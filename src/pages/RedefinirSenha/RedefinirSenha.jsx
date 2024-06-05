@@ -9,7 +9,7 @@ function RedefinirSenha() {
 
     return (
         <>
-            <Container mb={'176px'}>
+            <Container>
                 <Box textAlign={'center'} m={'80px'}>
                     <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                     {erroSenha && (

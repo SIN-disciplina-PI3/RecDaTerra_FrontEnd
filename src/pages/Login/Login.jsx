@@ -16,7 +16,7 @@ function Login() {
 
     return (
         <>
-            <Container mb={'148px'}>
+            <Container>
                 <Box textAlign={'center'} m={'50px'}>
                     <Heading color={'white'} fontWeight='bold'>Faça seu Login</Heading>
                     {erroEmail && (

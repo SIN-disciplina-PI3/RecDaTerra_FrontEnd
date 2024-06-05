@@ -5,7 +5,7 @@ import logo from '../../img/logoPreta.svg'
 
 function Footer() {
     return (
-        <Flex w={"100%"} h={"100%"} p={'40px'} alignItems={'center'} backgroundColor={'#7ED957'} justifyContent={'space-around'} flexDirection={['column', 'column', 'column', 'column', 'row']} mt={'40px'}>
+        <Flex w={"100%"} h={"100%"} p={'40px'} alignItems={'center'} backgroundColor={'#7ED957'} justifyContent={'space-around'} flexDirection={['column', 'column', 'column', 'column', 'row']}>
             <Box p={'10px'}>
                 <Image src={logo} alt="" />
             </Box>

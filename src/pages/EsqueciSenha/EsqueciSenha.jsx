@@ -10,7 +10,7 @@ function EsqueciSenha() {
 
     return (
         <>
-            <Container mb={'232px'}>
+            <Container>
                 <Box textAlign={'center'} mt={'80px'} mb={'45px'}>
                     <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                 </Box>
