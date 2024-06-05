@@ -10,7 +10,7 @@ import { FiLogOut } from "react-icons/fi";
 import ImgNav from '../../img/Navbar.svg'
 import LogoRec from '../../img/LogoRec.svg'
 
-function Navbar({ openNotification }) {
+function Navbar({ openNotification, tipoUsuario }) {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
 
@@ -91,9 +91,16 @@ function Navbar({ openNotification }) {
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/chat">
                             <ChatIcon color='black' boxSize={8} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
-                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/perfilcliente">
-                            <Icon as={CgProfile} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
-                        </Link>
+                        {tipoUsuario === 'cliente' && (
+                            <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/perfilcliente">
+                                <Icon as={CgProfile} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
+                            </Link>
+                        )}
+                        {tipoUsuario === 'produtor' && (
+                            <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/perfilcliente">
+                                <Icon as={CgProfile} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
+                            </Link>
+                        )}
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/login">
                             <Icon as={FiLogOut} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
@@ -136,6 +143,22 @@ function Navbar({ openNotification }) {
                                         <Text color={'black'}>Perfil</Text>
                                     </Box>
                                 </Link>
+                                {tipoUsuario === 'cliente' && (
+                                    <Link as={RouterLink} to="/perfilcliente">
+                                        <Box display={'flex'} alignItems={'center'}>
+                                            <Icon as={CgProfile} color='black' boxSize={9} mr={'15px'} />
+                                            <Text color={'black'}>Perfil</Text>
+                                        </Box>
+                                    </Link>
+                                )}
+                                {tipoUsuario === 'produtor' && (
+                                    <Link as={RouterLink} to="/perfilprodutor">
+                                        <Box display={'flex'} alignItems={'center'}>
+                                            <Icon as={CgProfile} color='black' boxSize={9} mr={'15px'} />
+                                            <Text color={'black'}>Perfil</Text>
+                                        </Box>
+                                    </Link>
+                                )}
                                 <Divider mt={'10px'} mb={'10px'} color={'black'} />
                                 <Link as={RouterLink} to="/login">
                                     <Box display={'flex'} alignItems={'center'}>

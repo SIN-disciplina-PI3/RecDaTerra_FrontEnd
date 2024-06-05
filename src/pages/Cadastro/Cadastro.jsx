@@ -6,8 +6,9 @@ function Cadastro() {
         <div className='container'>
             <div className="title">
                 <h1 style={{ color: 'white',
- marginTop: '10%',
-textAlign: 'center' }}>Você deseja se cadastrar como:</h1>
+                marginTop: '10%',
+                textAlign: 'center' }}>
+                Você deseja se cadastrar como:</h1>
             </div>
             <Flex 
                 alignItems='center'
@@ -15,7 +16,7 @@ textAlign: 'center' }}>Você deseja se cadastrar como:</h1>
                 p='30px'
                 mt='50px'
             >
-                {/*                 ----------------------BUTÃO PARA CADASTRO DO CLIENTE--------------------------------- */}
+{/*----------------------BUTÃO PARA CADASTRO DO CLIENTE--------------------------------- */}
                 <Button
                     mr='100px'
                     as={RouterLink} 
@@ -32,7 +33,7 @@ textAlign: 'center' }}>Você deseja se cadastrar como:</h1>
                 >
                     Cliente
                 </Button>
-{/*                 ----------------------BUTÃO PARA CADASTRO DO PRODUTOR--------------------------------- */}
+{/*----------------------BUTÃO PARA CADASTRO DO PRODUTOR--------------------------------- */}
                 <Button
                     as={RouterLink} 
                     to="/cadastroProdutor" 
