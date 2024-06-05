@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Flex, Box, FormControl, FormLabel, Input, InputGroup, InputLeftElement, Button } from "@chakra-ui/react";
 import { EmailIcon } from '@chakra-ui/icons';
 import { CgProfile, CgInstagram } from "react-icons/cg";
+import ModalAvaliar from '../../components/ModalAvaliar/ModalAvaliar';
 
 function PerfilCliente() {
     const [bio, setBio] = useState("Fale um pouco sobre você...");
@@ -166,6 +167,8 @@ function PerfilCliente() {
                     </Flex>
                 </Box>
             </Flex>
+            
+            {ModalAvaliar}
         </div>
     );
 }
