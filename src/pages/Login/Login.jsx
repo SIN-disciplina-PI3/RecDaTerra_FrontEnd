@@ -4,16 +4,27 @@ import { Flex, Heading, Box, Container, Text, Link } from "@chakra-ui/react"
 import { FormControl, FormLabel } from '@chakra-ui/react'
 import { Input, InputGroup, InputRightElement, InputLeftElement, Checkbox, Button } from "@chakra-ui/react"
 import { ViewIcon, ViewOffIcon, EmailIcon, LockIcon } from '@chakra-ui/icons'
+import ValidSenha from '../../components/ValidarSenha/ValidSenha'
+import ValidEmail from '../../components/ValidarEmail/ValidEmail'
 
 function Login() {
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
 
+    const { email, erro: erroEmail, eventoEmail, checkEmail } = ValidEmail();
+    const { senha, erro: erroSenha, eventoSenha, checkSenha } = ValidSenha();
+
     return (
-        <div className="container">
-            <Container>
+        <>
+            <Container mb={'148px'}>
                 <Box textAlign={'center'} m={'50px'}>
                     <Heading color={'white'} fontWeight='bold'>Faça seu Login</Heading>
+                    {erroEmail && (
+                        <span style={{ color: 'white', display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginTop: '20px', marginButton: '10px' }}>{erroEmail}<br /></span>
+                    )}
+                    {erroSenha && (
+                        <span style={{ color: 'white', display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginTop: '20px' }}>{erroSenha}</span>
+                    )}
                 </Box>
                 <Box>
                     <FormControl>
@@ -22,7 +33,9 @@ function Login() {
                             <InputLeftElement pointerEvents='none'>
                                 <EmailIcon color='#76603F' />
                             </InputLeftElement>
-                            <Input 
+                            <Input
+                                onChange={eventoEmail}
+                                value={email}
                                 variant='outline'
                                 type={'email'}
                                 placeholder={'Digite o seu e-mail...'}
@@ -30,6 +43,7 @@ function Login() {
                                 fontWeight='light'
                                 border={'none'}
                                 boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
+                                onBlur={checkEmail}
                             />
                         </InputGroup>
                         <FormLabel color={'white'} mt={'8px'} fontWeight='regular'>Senha</FormLabel>
@@ -38,6 +52,8 @@ function Login() {
                                 <LockIcon color='#76603F' />
                             </InputLeftElement>
                             <Input
+                                onChange={eventoSenha}
+                                value={senha}
                                 variant='outline'
                                 type={show ? 'text' : 'password'}
                                 placeholder='Digite sua senha...'
@@ -45,6 +61,7 @@ function Login() {
                                 fontWeight='light'
                                 border={'none'}
                                 boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
+                                onBlur={checkSenha}
                             />
                             <InputRightElement width='4.5rem'>
                                 <Button h='1.5rem' size='xs' onClick={handleClick} boxShadow='3px 3px 7px rgba(0, 0, 0, 0.1)'>
@@ -76,7 +93,7 @@ function Login() {
                     </Flex>
                 </Box>
             </Container>
-        </div>
+        </>
     )
 }
 

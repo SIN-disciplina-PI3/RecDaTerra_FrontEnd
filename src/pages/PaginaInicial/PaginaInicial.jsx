@@ -48,7 +48,7 @@ function PaginaInicial() {
         <>
             <Container maxW={'100%'} alignItems={'center'} display={'flex'} justifyContent={'space-evenly'} mt={'80px'} flexDirection={['column', 'row']}>
                 <Box>
-                    <Box mb={'40px'} textAlign={['center', 'left']}>
+                    <Box mb={'40px'} textAlign={'center'}>
                         <Heading fontSize={'60px'} color={'#98FF68'}>Bem Vindo ao RecDaTerra</Heading>
                         <Text color={'white'}>Conectando produtores Locais e Pernambucanos Conscientes</Text>
                     </Box>

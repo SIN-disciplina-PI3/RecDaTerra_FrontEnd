@@ -63,7 +63,6 @@ function App() {
           <Route path='/perfilprodutor' element={<PerfilProdutor />} />
           <Route path='/vizualizaprodutor' element={<VerProdutor />} />
           <Route path='/produtos' element={<Produtos />} />
-          <Route path='/post' element={<Posts/>} />
           <Route path='*' element={<Pag404 />} />
         </Routes>
         <Footer />
