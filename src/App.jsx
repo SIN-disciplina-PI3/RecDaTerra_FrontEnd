@@ -26,6 +26,7 @@ import EsqueciSenha from './pages/EsqueciSenha/EsqueciSenha';
 import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha';
 import RecuperaSenha from './pages/RecuperaSenha/RecuperaSenha';
 import Contato from './pages/Contato/Contato';
+import Posts from './pages/PerfilProdutor/AdicionarPosts';
 import Pag404 from './pages/PaginaErro/Pag404';
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
           location.pathname === '/cadastro' ||
           location.pathname === '/cadastroCliente' ||
           location.pathname === '/cadastroProdutor'||
-          location.pathname === '/404' ? <NavbarLogin /> :
+          location.pathname === '*' ? <NavbarLogin /> :
           <Navbar />}
         <Routes>
           <Route path='/' element={<PaginaInicial />} />
@@ -62,8 +63,8 @@ function App() {
           <Route path='/perfilprodutor' element={<PerfilProdutor />} />
           <Route path='/vizualizaprodutor' element={<VerProdutor />} />
           <Route path='/produtos' element={<Produtos />} />
-          <Route path='/404' element={<Pag404 />} />
-          <Route path='*' element={<Navigate to="/404" />} />
+          <Route path='/post' element={<Posts/>} />
+          <Route path='*' element={<Pag404 />} />
         </Routes>
         <Footer />
       </>

@@ -1,12 +1,14 @@
 import { IoLocationSharp } from "react-icons/io5";
 import MeninaVeneno from '../../img/PoisonGirl.png';
-import { Flex, Box, FormControl, FormLabel, Input, InputGroup, InputLeftElement, Button, Text, } from "@chakra-ui/react";
+import { Flex, Box, FormControl, FormLabel, Input, InputGroup, InputLeftElement, Button, Text, Link } from "@chakra-ui/react";
 import { EmailIcon } from '@chakra-ui/icons';
 import { CgProfile, CgInstagram } from "react-icons/cg";
 import { HiIdentification } from "react-icons/hi2";
 import { FaRoad } from "react-icons/fa";
 import { GiVillage } from "react-icons/gi";
 import { BsFillTelephoneFill } from "react-icons/bs";
+import { AddIcon } from '@chakra-ui/icons';
+import { Link as RouterLink } from "react-router-dom";
 
 
 
@@ -70,6 +72,8 @@ function PerfilProdutor() {
         
         <div>
             <p style={{ overflowWrap: 'break-word', wordWrap: 'break-word'  }}>{bio}</p>
+
+            <div  style={{display: 'flex' , justifyContent: 'center' }}>
             <Button 
                 onClick={handleEditClick}
                 border='1px solid black'
@@ -81,6 +85,18 @@ function PerfilProdutor() {
             >
                 Editar
             </Button>
+
+            <Link as={RouterLink} to="/post">
+            <AddIcon 
+            backgroundColor={"white"} 
+            color={"black"}
+            padding={"6px"}
+            boxSize={9}
+            borderRadius={"25px"}
+            />
+            </Link>
+            </div>
+
         </div>
     ) : (
         <div>
@@ -112,6 +128,7 @@ function PerfilProdutor() {
             </Button>
         </div>
     )}
+
 </Box>
 </Box>
                 {/* -------------------------------------DIVISÃO DE PAINEIS----------------------------------------------------- */}
