@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 function ValidSenha() {
     const [senha, setSenha] = useState('');
     const [erro, setErro] = useState('');
@@ -6,18 +8,20 @@ function ValidSenha() {
         const novaSenha = event.target.value;
         setSenha(novaSenha);
 
-        if (validarSenha(novaSenha) && novaSenha.length >= 6) {
+        if (novaSenha === '') {
+            setErro('');
+        } else if(validarSenha(novaSenha) && novaSenha.length >= 6) {
             setErro('');
         } else {
             setErro('A senha deve conter 6 caracteres com pelo menos uma letra e um número.');
         }
     }
 
-    function checkSenha() {
+    function checkSenha(event) {
         const novaSenha = event.target.value;
         
         if (novaSenha.trim() === '') {
-            setValue('password', '');
+            setSenha('');
             setErro('');
             return;
         }
@@ -27,6 +31,8 @@ function ValidSenha() {
         const regex = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
         return regex.test(senha);
     }
+
+    return { senha, setSenha, erro, eventoSenha, checkSenha };
 }
 
 export default ValidSenha;

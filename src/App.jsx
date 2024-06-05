@@ -62,8 +62,7 @@ function App() {
           <Route path='/perfilprodutor' element={<PerfilProdutor />} />
           <Route path='/vizualizaprodutor' element={<VerProdutor />} />
           <Route path='/produtos' element={<Produtos />} />
-          <Route path='/404' element={<Pag404 />} />
-          <Route path='*' element={<Navigate to="/404" />} />
+          <Route path='*' element={<Pag404 />} />
         </Routes>
         <Footer />
       </>

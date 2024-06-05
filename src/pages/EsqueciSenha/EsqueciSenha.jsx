@@ -3,16 +3,22 @@ import { Heading, Box, Container, Text, Link } from "@chakra-ui/react"
 import { FormControl, FormLabel } from '@chakra-ui/react'
 import { Input, InputGroup, InputLeftElement, Button } from "@chakra-ui/react"
 import { EmailIcon } from '@chakra-ui/icons'
+import ValidEmail from '../../components/ValidarEmail/ValidEmail'
 
 function EsqueciSenha() {
+    const { email, erro: erroEmail, eventoEmail, checkEmail } = ValidEmail();
+
     return (
         <>
-            <Container mb={'197px'}>
-                <Box textAlign={'center'} m={'80px'}>
+            <Container mb={'232px'}>
+                <Box textAlign={'center'} mt={'80px'} mb={'45px'}>
                     <Heading color={'white'} fontWeight='bold'>Redefinir Sua Senha</Heading>
                 </Box>
                 <Box textAlign={'center'} mb={'35px'}>
                     <Text fontWeight='regular' color={'white'}>Informe o Email cadastrado da sua Conta para recuperar sua senha</Text>
+                    {erroEmail && (
+                        <span style={{ color: 'white', display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginTop: '20px' }}>{erroEmail}</span>
+                    )}
                 </Box>
                 <Box>
                     <FormControl>
@@ -22,6 +28,8 @@ function EsqueciSenha() {
                                 <EmailIcon color='#76603F' />
                             </InputLeftElement>
                             <Input 
+                                onChange={eventoEmail}
+                                value={email}
                                 variant='outline'
                                 type={'email'}
                                 placeholder={'Digite o seu e-mail...'}
@@ -29,6 +37,7 @@ function EsqueciSenha() {
                                 fontWeight='light'
                                 border={'none'}
                                 boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
+                                onBlur={checkEmail}
                             />
                         </InputGroup>
                     </FormControl>

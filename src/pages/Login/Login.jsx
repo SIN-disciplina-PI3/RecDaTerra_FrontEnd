@@ -4,47 +4,26 @@ import { Flex, Heading, Box, Container, Text, Link } from "@chakra-ui/react"
 import { FormControl, FormLabel } from '@chakra-ui/react'
 import { Input, InputGroup, InputRightElement, InputLeftElement, Checkbox, Button } from "@chakra-ui/react"
 import { ViewIcon, ViewOffIcon, EmailIcon, LockIcon } from '@chakra-ui/icons'
+import ValidSenha from '../../components/ValidarSenha/ValidSenha'
+import ValidEmail from '../../components/ValidarEmail/ValidEmail'
 
 function Login() {
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
 
-    const [senha, setSenha] = useState('');
-    const [erro, setErro] = useState('');
-
-    function eventoSenha(event) {
-        const novaSenha = event.target.value;
-        setSenha(novaSenha);
-
-        if (validarSenha(novaSenha) && novaSenha.length >= 6) {
-            setErro('');
-        } else {
-            setErro('A senha deve conter 6 caracteres com pelo menos uma letra e um número.');
-        }
-    }
-
-    function checkSenha(event) {
-        const novaSenha = event.target.value;
-        
-        if (novaSenha.trim() === '') {
-            setSenha('');
-            setErro('');
-            return;
-        }
-    }
-
-    function validarSenha(senha) {
-        const regex = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
-        return regex.test(senha);
-    }
+    const { email, erro: erroEmail, eventoEmail, checkEmail } = ValidEmail();
+    const { senha, erro: erroSenha, eventoSenha, checkSenha } = ValidSenha();
 
     return (
         <>
             <Container mb={'148px'}>
                 <Box textAlign={'center'} m={'50px'}>
                     <Heading color={'white'} fontWeight='bold'>Faça seu Login</Heading>
-                    {erro && (
-                        <span style={{color: 'white'}}>{erro}</span>
+                    {erroEmail && (
+                        <span style={{ color: 'white', display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginTop: '20px', marginButton: '10px' }}>{erroEmail}<br /></span>
+                    )}
+                    {erroSenha && (
+                        <span style={{ color: 'white', display: 'flex', justifyContent: 'space-around', alignItems: 'center', marginTop: '20px' }}>{erroSenha}</span>
                     )}
                 </Box>
                 <Box>
@@ -55,6 +34,8 @@ function Login() {
                                 <EmailIcon color='#76603F' />
                             </InputLeftElement>
                             <Input
+                                onChange={eventoEmail}
+                                value={email}
                                 variant='outline'
                                 type={'email'}
                                 placeholder={'Digite o seu e-mail...'}
@@ -62,7 +43,7 @@ function Login() {
                                 fontWeight='light'
                                 border={'none'}
                                 boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
-                                required
+                                onBlur={checkEmail}
                             />
                         </InputGroup>
                         <FormLabel color={'white'} mt={'8px'} fontWeight='regular'>Senha</FormLabel>
