@@ -26,7 +26,7 @@ import EsqueciSenha from './pages/EsqueciSenha/EsqueciSenha';
 import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha';
 import RecuperaSenha from './pages/RecuperaSenha/RecuperaSenha';
 import Contato from './pages/Contato/Contato';
-import Posts from './pages/PerfilProdutor/AdicionarPosts';
+import Post from './pages/PerfilProdutor/AdicionarPosts';
 import Pag404 from './pages/PaginaErro/Pag404';
 
 function App() {
@@ -63,6 +63,7 @@ function App() {
           <Route path='/perfilprodutor' element={<PerfilProdutor />} />
           <Route path='/vizualizaprodutor' element={<VerProdutor />} />
           <Route path='/produtos' element={<Produtos />} />
+          <Route path='/post' element={<Post />} />
           <Route path='*' element={<Pag404 />} />
         </Routes>
         <Footer />
