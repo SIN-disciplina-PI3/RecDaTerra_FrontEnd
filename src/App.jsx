@@ -30,8 +30,9 @@ import EsqueciSenha from './pages/EsqueciSenha/EsqueciSenha';
 import RedefinirSenha from './pages/RedefinirSenha/RedefinirSenha';
 import RecuperaSenha from './pages/RecuperaSenha/RecuperaSenha';
 import Contato from './pages/Contato/Contato';
-import Post from './pages/PerfilProdutor/AdicionarPosts';
+import Post from './pages/Post/AdicionarPosts';
 import Pag404 from './pages/PaginaErro/Pag404';
+import BotaoPost from './components/BotaoPost/BotaoPost';
 
 function App() {
   const location = useLocation();
@@ -71,6 +72,7 @@ function App() {
               <Route path='/contato' element={<Contato />} />
               <Route path='/produtos' element={<Produtos />} />
               <Route path='/post' element={<Post />} />
+              <Route path='/post' element={<Post />} />
               {userType === 'cliente' ? (
                 <>
                   <Route path='/perfilcliente' element={<PerfilCliente />} />
@@ -79,7 +81,7 @@ function App() {
               ) : userType === 'produtor' ? (
                 <>
                   <Route path='/perfilprodutor' element={<PerfilProdutor />} />
-                  <Route path='/perfilcliente' element={<PerfilCliente />} />
+                  <Route path='/visualizacliente' element={<VerCliente />} />
                 </>
               ) : null}
               <Route path='*' element={<Pag404 />} />
@@ -87,6 +89,8 @@ function App() {
           </Box>
           <Box as={"footer"}>
             <Footer />
+            {/* Renderiza o componente AddPostButton apenas para usuários do tipo 'produtor' */}
+          {userType === 'produtor' && <BotaoPost />}
           </Box>
         </Flex>
       </>

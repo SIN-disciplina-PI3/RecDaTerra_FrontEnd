@@ -3,7 +3,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalOverlay,
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 
-function ModalAvaliar({ isOpen, onClose }) {
+function ModalAvaliar({ isOpen, onClose, type }) {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
     const [comment, setComment] = useState("");
@@ -12,6 +12,19 @@ function ModalAvaliar({ isOpen, onClose }) {
     const handleClose = () => {
         onClose();
         navigate('/home');
+    };
+
+    const getHeadingText = () => {
+        switch (type) {
+            case 'evento':
+                return 'Avalie o Evento:';
+            case 'produto':
+                return 'Avalie o Produto:';
+            case 'produtor':
+                return 'Avalie o Produtor:';
+            default:
+                return 'Avalie:';
+        }
     };
 
     return (
@@ -25,7 +38,7 @@ function ModalAvaliar({ isOpen, onClose }) {
             <ModalOverlay />
             <ModalContent backgroundColor='#76603F' textAlign='center' alignItems='center'>
                 <ModalHeader mb='30px'>
-                    <Heading color='#98FF68'>Avalie o Produto:</Heading>
+                    <Heading color='#98FF68'>{getHeadingText()}</Heading>
                 </ModalHeader>
                 <ModalBody>
                     <Flex justifyContent='center' mb='20px'>
@@ -65,9 +78,9 @@ function ModalAvaliar({ isOpen, onClose }) {
                         h='50px'
                         w='150px'
                         borderRadius='10px'
-                        color='white'
+                        color='black'
                         fontWeight='bold'
-                        backgroundColor='green'
+                        backgroundColor='#7ED957'
                         mr='20px'
                     >
                         Enviar
@@ -77,9 +90,9 @@ function ModalAvaliar({ isOpen, onClose }) {
                         h='50px'
                         w='150px'
                         borderRadius='10px'
-                        color='white'
+                        color='black'
                         fontWeight='bold'
-                        backgroundColor='red'
+                        backgroundColor='#FB3636'
                     >
                         Cancelar
                     </Button>

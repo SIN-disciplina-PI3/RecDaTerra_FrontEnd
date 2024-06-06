@@ -1,12 +1,12 @@
-// Chat.js
 import React, { useState } from 'react';
-import { Box, Flex, Text, VStack, Input, IconButton, Image, Center, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { Box, Flex, Text, VStack, Input, IconButton, Image, Center, InputGroup, InputRightElement, Badge } from '@chakra-ui/react';
 import { FiSend } from 'react-icons/fi';
 import { IoMdAttach } from "react-icons/io";
 import { BsEmojiGrin } from "react-icons/bs";
 import Picker from 'emoji-picker-react';
 import LacteaChat from '../../img/LacteaChat.png';
 import Chatbot from '../../components/ChatBot/Chatbot'; // Importe o componente do chatbot
+import { createChatBotMessage } from 'react-chatbot-kit';
 
 function Chat() {
   const [message, setMessage] = useState('');
@@ -19,8 +19,21 @@ function Chat() {
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
-    // Implementar lógica de envio de arquivo
-    console.log('Arquivo selecionado:', file);
+    if (file) {
+      const newMessage = {
+        text: `Arquivo: ${file.name}`,
+        timestamp: new Date().toLocaleTimeString(),
+        fromUser: true,
+        file: file // Salva o arquivo na mensagem
+      };
+      setMessages(prevMessages => [...prevMessages, newMessage]);
+
+      // Simular resposta do chatbot após 1 segundo
+      setTimeout(() => {
+        const botMessage = createChatBotMessage(`Você enviou o arquivo: ${file.name}`);
+        setMessages(prevMessages => [...prevMessages, botMessage]);
+      }, 1000);
+    }
   };
 
   const handleSendMessage = () => {
@@ -34,6 +47,12 @@ function Chat() {
         const botMessage = { text: `Você disse: ${message}`, timestamp: new Date().toLocaleTimeString(), fromUser: false };
         setMessages(prevMessages => [...prevMessages, botMessage]);
       }, 1000);
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSendMessage();
     }
   };
 
@@ -67,8 +86,19 @@ function Chat() {
                   borderRadius="md" 
                   alignSelf={msg.fromUser ? "flex-start" : "flex-end"}
                 >
-                  <Text color={msg.fromUser ? "white" : "black"}>{msg.text}</Text>
-                  <Text color={msg.fromUser ? "white" : "black"} fontSize="xs" align="right">{msg.timestamp}</Text>
+                  {msg.file ? ( // Verifica se a mensagem contém um arquivo
+                    <>
+                      <Text color={msg.fromUser ? "white" : "black"}>{msg.text}</Text>
+                      <Box mt={2}>
+                        <Badge colorScheme="blue">{msg.file.name}</Badge>
+                      </Box>
+                    </>
+                  ) : (
+                    <>
+                      <Text color={msg.fromUser ? "white" : "black"}>{msg.text}</Text>
+                      <Text color={msg.fromUser ? "white" : "black"} fontSize="xs" align="right">{msg.timestamp}</Text>
+                    </>
+                  )}
                 </Box>
               ))}
             </VStack>
@@ -97,6 +127,7 @@ function Chat() {
               flex="1" 
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
             <InputRightElement>
               <IconButton icon={<FiSend />} aria-label="Enviar mensagem" onClick={handleSendMessage} />
