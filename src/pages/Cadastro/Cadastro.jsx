@@ -1,7 +1,18 @@
 import { Link as RouterLink } from 'react-router-dom';
 import { Button, Flex } from "@chakra-ui/react";
+import React, { useContext } from 'react';
+import { UserContext } from '../../components/TipoUsuario/TipoUsuario';
+import { useNavigate } from 'react-router-dom';
 
 function Cadastro() {
+    const { register } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const handleRegister = (type) => {
+        register(type);
+        navigate('/login');
+    };
+
     return (
         <div className='container'>
             <div className="title">
@@ -30,6 +41,7 @@ function Cadastro() {
                     backgroundColor='#98FF68'
                     boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
                     transition='all 0.3s ease-in-out'
+                    onClick={() => handleRegister('cliente')}
                 >
                     Cliente
                 </Button>
@@ -46,6 +58,7 @@ function Cadastro() {
                     backgroundColor='#98FF68'
                     boxShadow='7px 7px 10px rgba(0, 0, 0, 0.1)'
                     transition='all 0.3s ease-in-out'
+                    onClick={() => handleRegister('produtor')}
                 >
                     Produtor
                 </Button>

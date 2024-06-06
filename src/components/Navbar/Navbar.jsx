@@ -9,6 +9,8 @@ import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
 import ImgNav from '../../img/Navbar.svg'
 import LogoRec from '../../img/LogoRec.svg'
+import React, { useContext } from 'react';
+import { UserContext } from '../TipoUsuario/TipoUsuario';
 
 function Navbar({ openNotification }) {
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -35,6 +37,8 @@ function Navbar({ openNotification }) {
     const toggleNotification = () => {
         setNotificationOpen(!isNotificationOpen);
     };
+
+    const { userType } = useContext(UserContext);
 
     return (
         <>
@@ -91,9 +95,16 @@ function Navbar({ openNotification }) {
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/chat">
                             <ChatIcon color='black' boxSize={8} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
-                        <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/perfilcliente">
-                            <Icon as={CgProfile} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
-                        </Link>
+                        {userType === 'cliente' && (
+                            <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/perfilcliente">
+                                <Icon as={CgProfile} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
+                            </Link>
+                        )}
+                        {userType === 'produtor' && (
+                            <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/perfilprodutor">
+                                <Icon as={CgProfile} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
+                            </Link>
+                        )}
                         <Link pl={'10px'} pr={'10px'} as={RouterLink} to="/login">
                             <Icon as={FiLogOut} color='black' boxSize={9} transition={'all 0.3s ease-in-out'} _hover={{ transform: 'scale(1.2)' }} />
                         </Link>
@@ -130,12 +141,22 @@ function Navbar({ openNotification }) {
                                     </Box>
                                 </Link>
                                 <Divider mt={'10px'} mb={'10px'} color={'black'} />
-                                <Link as={RouterLink} to="/visualizacliente">
-                                    <Box display={'flex'} alignItems={'center'}>
-                                        <Icon as={CgProfile} color='black' boxSize={9} mr={'15px'} />
-                                        <Text color={'black'}>Perfil</Text>
-                                    </Box>
-                                </Link>
+                                {userType === 'cliente' && (
+                                    <Link as={RouterLink} to="/perfilcliente">
+                                        <Box display={'flex'} alignItems={'center'}>
+                                            <Icon as={CgProfile} color='black' boxSize={9} mr={'15px'} />
+                                            <Text color={'black'}>Perfil</Text>
+                                        </Box>
+                                    </Link>
+                                )}
+                                {userType === 'produtor' && (
+                                    <Link as={RouterLink} to="/perfilprodutor">
+                                        <Box display={'flex'} alignItems={'center'}>
+                                            <Icon as={CgProfile} color='black' boxSize={9} mr={'15px'} />
+                                            <Text color={'black'}>Perfil</Text>
+                                        </Box>
+                                    </Link>
+                                )}
                                 <Divider mt={'10px'} mb={'10px'} color={'black'} />
                                 <Link as={RouterLink} to="/login">
                                     <Box display={'flex'} alignItems={'center'}>

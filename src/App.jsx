@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import React, { useContext } from 'react';
 import { Flex, Box } from "@chakra-ui/react"
 
 /*Importação dos componentes*/
@@ -8,6 +9,7 @@ import NavbarLogin from './components/NavbarLogin/NavbarLogin'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import Topo from './components/TopoPag/TopoDaPag'
+import { UserProvider, UserContext } from './components/TipoUsuario/TipoUsuario';
 
 /*Importação das Páginas*/
 import Home from './pages/Home/Home';
@@ -33,6 +35,7 @@ import Pag404 from './pages/PaginaErro/Pag404';
 
 function App() {
   const location = useLocation();
+  const { userType } = useContext(UserContext);
 
   return (
       <>
@@ -45,19 +48,20 @@ function App() {
             location.pathname === '/redefinirsenha' ||
             location.pathname === '/cadastro' ||
             location.pathname === '/cadastroCliente' ||
-            location.pathname === '/cadastroProdutor'||
+            location.pathname === '/cadastroProdutor' ||
             location.pathname === '*' ? <NavbarLogin /> :
             <Navbar />}
           </Box>
           <Box as={"main"} flex={"1"}>
             <Topo />
             <Routes>
+              {userType === 'cliente' && <Route path='/home' element={<Home />} />}
+              {userType === 'produtor' && <Route path='/home' element={<Home />} />}
               <Route path='/' element={<PaginaInicial />} />
               <Route path='/login' element={<Login />} />
               <Route path='/esquecisenha' element={<EsqueciSenha />} />
               <Route path='/recuperasenha' element={<RecuperaSenha />} />
               <Route path='/redefinirsenha' element={<RedefinirSenha />} />
-              <Route path='/home' element={<Home />} />
               <Route path='/sobre' element={<Sobre />} />
               <Route path='/cadastro' element={<Cadastro />} />
               <Route path='/cadastrocliente' element={<CadastroCliente />} />
@@ -65,13 +69,20 @@ function App() {
               <Route path='/chat' element={<Chat />} />
               <Route path='/conscientizaterra' element={<ConscientizAterra />} />
               <Route path='/contato' element={<Contato />} />
-              <Route path='/perfilcliente' element={<PerfilCliente />} />
-              <Route path='/visualizacliente' element={<VerCliente />} />
-              <Route path='/perfilprodutor' element={<PerfilProdutor />} />
-              <Route path='/vizualizaprodutor' element={<VerProdutor />} />
               <Route path='/produtos' element={<Produtos />} />
               <Route path='/post' element={<Post />} />
-          <Route path='*' element={<Pag404 />} />
+              {userType === 'cliente' ? (
+                <>
+                  <Route path='/perfilcliente' element={<PerfilCliente />} />
+                  <Route path='/vizualizaprodutor' element={<VerProdutor />} />
+                </>
+              ) : userType === 'produtor' ? (
+                <>
+                  <Route path='/perfilprodutor' element={<PerfilProdutor />} />
+                  <Route path='/perfilcliente' element={<PerfilCliente />} />
+                </>
+              ) : null}
+              <Route path='*' element={<Pag404 />} />
             </Routes>
           </Box>
           <Box as={"footer"}>
@@ -82,4 +93,10 @@ function App() {
   );
 }
 
-export default App;
+const AppWrapper = () => (
+  <UserProvider>
+    <App />
+  </UserProvider>
+);
+
+export default AppWrapper;

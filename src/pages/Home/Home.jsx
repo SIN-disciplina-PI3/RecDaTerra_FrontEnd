@@ -20,6 +20,8 @@ import ImgEvento3 from '../../img/ImgEvento3.svg'
 import ImgEvento4 from '../../img/ImgEvento4.svg'
 import Estrela from '../../img/EstrelaImg.svg'
 import ImgProdutor from '../../img/ImgProdutor.svg'
+import React, { useContext } from 'react';
+import { UserContext } from '../../components/TipoUsuario/TipoUsuario';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
@@ -67,6 +69,8 @@ function Home() {
     useEffect(() => {
         setIsOpen(true); // Definir isOpen como true ao montar o componente
     }, []);
+
+    const { userType } = useContext(UserContext);
 
     return (
         <>
@@ -193,7 +197,10 @@ function Home() {
                                 <Divider borderWidth={'1px'} borderColor={'black'}  />
                                 <Box m={'5px'} pt={'15px'} display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
                                     <Image src={ImgProdutor} alt='Imagem de perfil do produtor' />
-                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link></Text>
+                                    <Text pl={'10px'}>Postado por: 
+                                    {userType === 'cliente' && (<Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link>)}
+                                    {userType === 'produtor' && (<Link as={RouterLink} to="/perfilprodutor">Lactéa</Link>)}
+                                    </Text>
                                 </Box>
                             </CardFooter>
                         </Card>
@@ -270,7 +277,10 @@ function Home() {
                                 <Divider borderWidth={'1px'} borderColor={'black'}  />
                                 <Box m={'5px'} pt={'15px'} display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
                                     <Image src={ImgProdutor} alt='Imagem de perfil do produtor' />
-                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link></Text>
+                                    <Text pl={'10px'}>Postado por: 
+                                    {userType === 'cliente' && (<Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link>)}
+                                    {userType === 'produtor' && (<Link as={RouterLink} to="/perfilprodutor">Lactéa</Link>)}
+                                    </Text>
                                 </Box>
                             </CardFooter>
                         </Card>
@@ -347,7 +357,10 @@ function Home() {
                                 <Divider borderWidth={'1px'} borderColor={'black'}  />
                                 <Box m={'5px'} pt={'15px'} display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
                                     <Image src={ImgProdutor} alt='Imagem de perfil do produtor' />
-                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link></Text>
+                                    <Text pl={'10px'}>Postado por: 
+                                    {userType === 'cliente' && (<Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link>)}
+                                    {userType === 'produtor' && (<Link as={RouterLink} to="/perfilprodutor">Lactéa</Link>)}
+                                    </Text>
                                 </Box>
                             </CardFooter>
                         </Card>
@@ -424,7 +437,10 @@ function Home() {
                                 <Divider borderWidth={'1px'} borderColor={'black'}  />
                                 <Box m={'5px'} pt={'15px'} display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
                                     <Image src={ImgProdutor} alt='Imagem de perfil do produtor' />
-                                    <Text pl={'10px'}>Postado por: <Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link></Text>
+                                    <Text pl={'10px'}>Postado por: 
+                                    {userType === 'cliente' && (<Link as={RouterLink} to="/vizualizaprodutor">Lactéa</Link>)}
+                                    {userType === 'produtor' && (<Link as={RouterLink} to="/perfilprodutor">Lactéa</Link>)}
+                                    </Text>
                                 </Box>
                             </CardFooter>
                         </Card>

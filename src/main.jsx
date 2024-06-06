@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'; 
-import App from './App.jsx';
+import AppWrapper from './App.jsx';
 import { ChakraProvider } from '@chakra-ui/react';
 import { register } from 'swiper/element/bundle';
 
@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
         <ChakraProvider theme={theme}>
-            <App />
+          <AppWrapper />
         </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,
