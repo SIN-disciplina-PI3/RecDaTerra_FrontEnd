@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalOverlay, Button, Heading, Flex, Textarea, Box } from '@chakra-ui/react';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalOverlay, Button, Heading, Flex, Textarea } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 
-function ModalAvaliar({ isOpen, onClose, type }) {
+function ModalAvaliar({ isOpen, onClose, type, avaliavelId, tipoAvaliavel }) {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
     const [comment, setComment] = useState("");
@@ -24,6 +24,33 @@ function ModalAvaliar({ isOpen, onClose, type }) {
                 return 'Avalie o Produtor:';
             default:
                 return 'Avalie:';
+        }
+    };
+
+    const handleEnviarAvaliacao = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/api/avaliacao/criar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nota: rating,
+                    descricao: comment,
+                    avaliavelId,
+                    tipoAvaliavel,
+                }),
+            });
+            if (response.ok) {
+                console.log('Avaliação enviada com sucesso!');
+                // Aqui você pode adicionar lógica adicional após o envio da avaliação
+            } else {
+                console.error('Erro ao enviar avaliação:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro ao enviar avaliação:', error.message);
+        } finally {
+            handleClose();
         }
     };
 
@@ -74,7 +101,7 @@ function ModalAvaliar({ isOpen, onClose, type }) {
                 </ModalBody>
                 <ModalFooter>
                     <Button
-                        onClick={handleClose}
+                        onClick={handleEnviarAvaliacao}
                         h='50px'
                         w='150px'
                         borderRadius='10px'

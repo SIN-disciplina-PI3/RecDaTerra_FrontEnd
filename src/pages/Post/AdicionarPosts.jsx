@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Container,
   Select,
@@ -12,17 +12,34 @@ import {
   Slider,
   SliderTrack,
   SliderFilledTrack,
-  SliderThumb,
+  Spinner,
+  Alert,
+  AlertIcon,
+  SliderThumb
 } from "@chakra-ui/react";
 import { PiUploadSimpleBold } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
 
 function AdicionarPosts() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
-  const [selectedOption, setSelectedOption] = useState("produto"); // Estado para controlar a opção selecionada
-  const [estoque, setEstoque] = useState(0); // Estado para controlar o valor do estoque
+  const [selectedOption, setSelectedOption] = useState("produto");
+  const [nomeEvento, setNomeEvento] = useState("");
+  const [informacoes, setInformacoes] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [saibaMaisEvento, setSaibaMaisEvento] = useState("");
   const [telefone, setTelefone] = useState("");
   const [instagram, setInstagram] = useState("");
+  const [nomeProduto, setNomeProduto] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [estoque, setEstoque] = useState(0);
+  const [disponibilidade, setDisponibilidade] = useState("");
+  const [fotoProduto, setFotoProduto] = useState("");
+  const [fotoEvento, setFotoEvento] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [alerta, setAlerta] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -31,7 +48,6 @@ function AdicionarPosts() {
       setSelectedFile(file);
       setImageUrl(imageUrl);
     } else {
-      // Exibir mensagem de erro ou ignorar arquivo
       console.log("Por favor, selecione um arquivo JPG ou PNG.");
     }
   };
@@ -47,12 +63,13 @@ function AdicionarPosts() {
 
   const handleEstoqueChange = (value) => {
     setEstoque(value);
+    if (value === 0) {
+      setDisponibilidade("indisponivel");
+    }
   };
 
   const formatarTelefone = (value) => {
-    // Remover qualquer caractere que não seja número
     const onlyNums = value.replace(/[^\d]/g, "");
-    // Aplicar a máscara de telefone com DDD
     let formattedTelefone = "";
     if (onlyNums.length > 0) {
       formattedTelefone = "(" + onlyNums.substring(0, 2);
@@ -67,7 +84,6 @@ function AdicionarPosts() {
   };
 
   const handleChangeTelefone = (value) => {
-    // Formatar o telefone conforme o usuário digita
     const formattedTelefone = formatarTelefone(value);
     setTelefone(formattedTelefone);
   };
@@ -80,21 +96,130 @@ function AdicionarPosts() {
     setInstagram(formattedInstagram);
   };
 
+  const handlePostar = async () => {
+    setAlerta(false); // Resetando o alerta ao tentar postar novamente
+  
+    if (selectedOption === "evento") {
+      if (
+        nomeEvento &&
+        informacoes &&
+        descricao &&
+        saibaMaisEvento &&
+        telefone &&
+        imageUrl
+      ) {
+        const eventoData = {
+          nomeEvento,
+          informacoes,
+          descricao,
+          saibaMaisEvento,
+          fotoEvento: imageUrl,
+          contato: telefone,
+          dataEvento: new Date().toISOString(),
+          produtores: [],
+        };
+  
+        try {
+          setIsLoading(true);
+          const response = await fetch(
+            "http://localhost:8080/api/eventos/criar",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(eventoData),
+            }
+          );
+  
+          console.log("JSON enviado para criação do Evento:", eventoData);
+  
+          if (response.ok) {
+            console.log("Evento criado com sucesso!");
+            navigate("/home");
+          } else {
+            console.log("Erro ao criar evento.");
+          }
+        } catch (error) {
+          console.log("Erro ao enviar requisição:", error);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setAlerta(true); // Mostrar alerta se algum campo estiver vazio
+      }
+    } else if (selectedOption === "produto") {
+      if (
+        nomeProduto &&
+        descricao &&
+        categoria &&
+        estoque > 0 &&
+        imageUrl
+      ) {
+        const produtoData = {
+          nomeProduto,
+          descricao,
+          categoria,
+          estoque,
+          disponibilidade: disponibilidade === "disponivel" ? true : false,
+          fotoProduto: imageUrl,
+          dataRegistroProduto: new Date().toISOString(),
+        };
+  
+        try {
+          setIsLoading(true);
+          const response = await fetch(
+            "http://localhost:8080/api/produtos/criar",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(produtoData),
+            }
+          );
+  
+          console.log("JSON enviado para criação do produto:", produtoData);
+  
+          if (response.ok) {
+            console.log("Produto criado com sucesso!");
+            navigate("/home");
+          } else {
+            console.log("Erro ao criar produto.");
+          }
+        } catch (error) {
+          console.log("Erro ao enviar requisição:", error);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setAlerta(true); // Mostrar alerta se algum campo estiver vazio
+      }
+    }
+  };
+  
+
   return (
     <div className="container">
       <Container maxW={"100%"}>
-      <Box mb={"40px"} maxWidth="300px" mx="auto">
-    <Select
-        backgroundColor={"#D9D9D9"}
-        width={"100%"}
-        borderRadius={"20px"}
-        value={selectedOption}
-        onChange={handleSelectChange}
-    >
-        <option value="produto">Produto</option>
-        <option value="evento">Evento</option>
-    </Select>
-    </Box>
+      {alerta && (
+          <Alert status="error" mb={4}>
+            <AlertIcon />
+            Por favor, preencha todos os campos antes de postar.
+          </Alert>
+        )}
+        <Box mb={"40px"} maxWidth="300px" mx="auto">
+          <Select
+            backgroundColor={"#D9D9D9"}
+            width={"100%"}
+            borderRadius={"20px"}
+            value={selectedOption}
+            onChange={handleSelectChange}
+          >
+            <option value="produto">Produto</option>
+            <option value="evento">Evento</option>
+          </Select>
+        </Box>
 
         <Flex
           justify="center"
@@ -111,8 +236,8 @@ function AdicionarPosts() {
               flexDirection={"column"}
               justifyContent="center"
               alignItems="center"
-              width={{base: "400px", md: "700px"}}
-              height={"auto"} // Altura dinâmica conforme a opção selecionada
+              width={{ base: "400px", md: "700px" }}
+              height={"auto"}
               marginBottom={"100px"}
               borderRadius={"20px"}
               padding="30px"
@@ -145,7 +270,7 @@ function AdicionarPosts() {
                     fontSize={20}
                     whiteSpace={"nowrap"}
                     color="#6A554E"
-                    mt={4} // Adicionando margem superior
+                    mt={4}
                   >
                     Adicione uma imagem do seu{" "}
                     {selectedOption === "produto" ? "produto" : "evento"}
@@ -177,12 +302,15 @@ function AdicionarPosts() {
 
           <div className="ladodireito">
             <Box
+              display={"flex"}
+              justifyContent={"center"}
+              flexDirection={"column"}
               ml={30}
               textAlign={"left"}
               backgroundColor={"#D9D9D9"}
               borderRadius="20px"
               padding="30px"
-              height={"auto"} // Altura dinâmica conforme a opção selecionada
+              height={"auto"}
               width={"300px"}
               marginBottom="100px"
             >
@@ -201,12 +329,15 @@ function AdicionarPosts() {
                     placeholder={`Digite o nome do produto`}
                     borderColor="gray.300"
                     backgroundColor="white"
+                    value={nomeProduto}
+                    onChange={(e) => setNomeProduto(e.target.value)}
                   />
                  
                   <Text
                     fontSize="lg"
                     fontWeight="bold"
                     mb={2}
+                    mt={4}
                     color={"#524541"}
                   >
                     Descrição
@@ -216,6 +347,8 @@ function AdicionarPosts() {
                     placeholder={`Digite a descrição`}
                     borderColor="gray.300"
                     backgroundColor="white"
+                    value={descricao}
+                    onChange={(e) => setDescricao(e.target.value)}
                   />
 
                   <Text
@@ -223,6 +356,7 @@ function AdicionarPosts() {
                     fontWeight="bold"
                     mb={2}
                     color={"#524541"}
+                    mt={4}
                   >
                     Categoria
                   </Text>
@@ -231,6 +365,8 @@ function AdicionarPosts() {
                     placeholder="Selecione a categoria"
                     borderColor="gray.300"
                     backgroundColor="white"
+                    value={categoria}
+                    onChange={(e) => setCategoria(e.target.value)}
                   >
                     <option value="Alimentos Veg">Alimentos Veg</option>
                     <option value="Artesanato">Artesanato</option>
@@ -248,45 +384,46 @@ function AdicionarPosts() {
                     fontSize="lg"
                     fontWeight="bold"
                     mb={2}
+                    mt={4}
                     color={"#524541"}
                   >
                     Estoque
                   </Text>
                   <Slider
-                    aria-label="slider-estoque"
-                    value={estoque}
+                    defaultValue={0}
                     min={0}
                     max={100}
                     step={1}
                     onChange={handleEstoqueChange}
+                    mb={2}
                   >
-                    <SliderTrack bg="gray.100">
-                      <SliderFilledTrack bg="#76603F" />
+                    <SliderTrack bg="white">
+                      <SliderFilledTrack bg="#438545" />
                     </SliderTrack>
                     <SliderThumb boxSize={6} />
                   </Slider>
-                  <Text fontSize="lg" mb={2} mt={4} color={"#524541"}>
+                  <Text fontSize="lg" mb={2} mt={0} color={"#438545"}>
                     Quantidade: {estoque}
                   </Text>
 
                   <Text
-                    fontSize="lg"
-                    fontWeight="bold"
-                    mb={2}
-                    mt={4}
-                    color={"#524541"}
-                  >
-                    Disponibilidade
-                  </Text>
-                  <Select
-                    mb={4}
-                    placeholder="Selecione a disponibilidade"
-                    borderColor="gray.300"
-                    backgroundColor="white"
-                  >
-                    <option value="disponivel">Disponível</option>
-                    <option value="nao-disponivel">Não disponível</option>
-                  </Select>
+                  fontSize="lg"
+                  fontWeight="bold"
+                  mb={2}
+                  color={"#524541"}
+                  mt={4}
+                >
+                  Disponibilidade
+                </Text>
+                <Text
+                  mb={4}
+                  borderColor="gray.300"
+                  backgroundColor="white"
+                  p={2}
+                  borderRadius="md"
+                >
+                  {estoque > 0 ? "Disponível" : "Indisponível"}
+                </Text>
                 </>
               ) : (
                 <>
@@ -299,11 +436,12 @@ function AdicionarPosts() {
                     Nome do Evento
                   </Text>
                   <Input
-                    required
                     mb={4}
                     placeholder={`Digite o nome do evento`}
                     borderColor="gray.300"
                     backgroundColor="white"
+                    value={nomeEvento}
+                    onChange={(e) => setNomeEvento(e.target.value)}
                   />
 
                   <Text
@@ -315,11 +453,12 @@ function AdicionarPosts() {
                     Informações
                   </Text>
                   <Textarea
-                    required
                     mb={4}
                     placeholder={`Digite as informações do evento`}
                     borderColor="gray.300"
                     backgroundColor="white"
+                    value={informacoes}
+                    onChange={(e) => setInformacoes(e.target.value)}
                   />
 
                   <Text
@@ -335,6 +474,8 @@ function AdicionarPosts() {
                     placeholder={`Digite a descrição do evento`}
                     borderColor="gray.300"
                     backgroundColor="white"
+                    value={descricao}
+                    onChange={(e) => setDescricao(e.target.value)}
                   />
 
                   <Text
@@ -343,13 +484,15 @@ function AdicionarPosts() {
                     mb={2}
                     color={"#524541"}
                   >
-                    Saiba mais
+                    Saiba mais sobre o evento
                   </Text>
                   <Input
                     mb={4}
-                    placeholder={`Link para mais informações`}
+                    placeholder={`Digite um link para mais informações`}
                     borderColor="gray.300"
                     backgroundColor="white"
+                    value={saibaMaisEvento}
+                    onChange={(e) => setSaibaMaisEvento(e.target.value)}
                   />
 
                   <Text
@@ -358,12 +501,11 @@ function AdicionarPosts() {
                     mb={2}
                     color={"#524541"}
                   >
-                    Telefone
+                    Telefone de Contato
                   </Text>
                   <Input
                     mb={4}
-                    type="tel"
-                    placeholder={`Digite o telefone de contato`}
+                    placeholder={`Digite o telefone`}
                     borderColor="gray.300"
                     backgroundColor="white"
                     value={telefone}
@@ -380,7 +522,7 @@ function AdicionarPosts() {
                   </Text>
                   <Input
                     mb={4}
-                    placeholder={`Digite o Instagram de contato`}
+                    placeholder={`Digite o Instagram`}
                     borderColor="gray.300"
                     backgroundColor="white"
                     value={instagram}
@@ -390,16 +532,14 @@ function AdicionarPosts() {
               )}
 
               <Button
-                bg="#76603F"
-                color="white"
-                width="100%"
+                backgroundColor={"#76603F"}
+                color={"white"}
+                onClick={handlePostar}
+                isFullWidth
                 mt={4}
-                _hover={{ bg: "#5C4D31" }}
-                _active={{ bg: "#5C4D31" }}
-                _focus={{ outline: "none" }}
-                borderRadius="10px"
+                disabled={isLoading}
               >
-                Postar
+                {isLoading ? <Spinner size="sm" /> : "Postar"}
               </Button>
             </Box>
           </div>

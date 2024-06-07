@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Icon } from '@chakra-ui/react';
 import { IoMdSend } from 'react-icons/io';
 import { MdOutlineEmojiEmotions } from 'react-icons/md';
@@ -32,6 +32,7 @@ function Home() {
   const swiper = useSwiper();
 
   const [isModalOpen, setModalOpen] = useState(false);
+  const [eventos, setEventos] = useState([]);
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
@@ -49,6 +50,47 @@ function Home() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    fetchEventos();
+  }, []);
+
+  const fetchEventos = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/eventos/listar");
+      if (response.ok) {
+        const data = await response.json();
+        // Para cada evento, buscar a média de avaliação
+        const eventosComMedia = await Promise.all(
+          data.map(async (evento) => {
+            const media = await fetchMediaAvaliacoesEvento(evento.id);
+            return { ...evento, media };
+          })
+        );
+        setEventos(eventosComMedia); // Armazenando os eventos com média no estado local
+      } else {
+        console.log("Erro ao buscar eventos:", response.statusText);
+      }
+    } catch (error) {
+      console.log("Erro ao buscar eventos:", error.message);
+    }
+  };
+
+  const fetchMediaAvaliacoesEvento = async (eventoId) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/eventos/${eventoId}/media-avaliacoes-evento`);
+      if (response.ok) {
+        const { media } = await response.json();
+        return media;
+      } else {
+        console.log(`Erro ao buscar média de avaliações para o evento ${eventoId}:`, response.statusText);
+        return null;
+      }
+    } catch (error) {
+      console.log(`Erro ao buscar média de avaliações para o evento ${eventoId}:`, error.message);
+      return null;
+    }
+  };
 
   const handleSlidePrev = () => {
     if (swiper) {
@@ -128,132 +170,132 @@ function Home() {
           <Text color={'white'}>Aqui você poderá acompanhar os eventos mais recentes em Recife Região</Text>
         </Box>
         <Grid templateColumns={['1fr', '1fr', '1fr 1fr']} gap={0}>
-          {[ImgEvento, ImgEvento2, ImgEvento3, ImgEvento4].map((imgSrc, index) => (
+          {eventos.map((evento, index) => (
             <GridItem key={index} display={'flex'} justifyContent={'center'}>
               <Card border={'2px solid black'} maxW={['360px', '600px']} m={['10px', '30px']}>
                 <CardHeader p={'none'} display={'flex'} justifyContent={'space-around'}>
-                  <Image w={'100%'} src={imgSrc} alt={`Imagem do evento ${index + 1}`}></Image>
+                  <Image w={'100%'} src={evento.fotoEvento} alt={`Imagem do evento ${index + 1}`} />
                 </CardHeader>
                 <CardBody p={'none'}>
                   <Box w={'100%'} p={'5px'} backgroundColor={'#7ED957'} textAlign={'center'} fontSize={'xl'}>
-                    Titulo do Evento
+                    {evento.nomeEvento}
                   </Box>
                   <Box p={'40px'} m={'10px'} backgroundColor={'#D9D9D9'} textAlign={'center'} border={'1px solid black'} borderRadius={'15px'}>
-                    Informações gerais do Evento
+                    {evento.informacoes}
                   </Box>
                   <Box m={'20px'}>
                     <Text>
-                      Uma descrição breve sobre o evento, o que vai se encontrar, produtos disponíveis, produtores presentes e entre outras
-                      atrações...
+                      {evento.descricao}
                     </Text>
                     <Text color={'#7A5448'}>Clique abaixo para saber mais...</Text>
                   </Box>
                   <Box mb={'20px'} textAlign={'center'}>
-                    <Link as={RouterLink} to="#" display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
-                      <InfoOutlineIcon />
-                      <Text pl={'5px'}>Saiba Mais</Text>
-                    </Link>
-                  </Box>
-                </CardBody>
-                <Divider borderWidth={'1px'} />
-                <CardFooter flexDirection={'column'}>
-                  <Box m={'5px'}>
-                    <InputGroup mb={'10px'}>
-                      <InputLeftElement>
-                        <Icon as={MdOutlineEmojiEmotions} color="black" boxSize={6} />
-                      </InputLeftElement>
-                      <Input
-                        backgroundColor={'#C1C1C1'}
-                        border={'1px solid black'}
-                        borderRadius={'15px'}
-                        placeholder={'Adicionar um comentário...'}
-                        _placeholder={{ color: 'black' }}
-                        fontWeight="light"
-                        fontSize={'sm'}
-                      />
-                      <InputRightElement>
-                        <Icon as={IoMdSend} color="black" boxSize={6} />
-                      </InputRightElement>
-                    </InputGroup>
-                  </Box>
-                  <Box m={'5px'} textAlign={'center'}>
-                    <Stat>
-                      <StatNumber fontSize={'xl'}>4.5</StatNumber>
-                    </Stat>
-                    <Box display={'flex'} flexDirection={'row'} justifyContent={'center'}>
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Image key={i} src={Estrela} alt={`Nível de Avaliação ${i + 1}`} />
-                      ))}
-                    </Box>
-                  </Box>
-                  <Box m={'5px'} textAlign={'center'} alignItems={'center'}>
-                    <Link as={RouterLink} to="#" display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'} onClick={openModal}>
-                      <SmallAddIcon color={'white'} boxSize={5} backgroundColor={'#438545'} borderRadius={'50%'} />
-                      <Text pl={'5px'} color={'#438545'} fontSize={'sm'}>
-                        Avaliar o evento
-                      </Text>
-                    </Link>
-                    <ModalAvaliar isOpen={isModalOpen} onClose={closeModal} type="evento"/>
-                  </Box>
-                  <Divider borderWidth={'1px'} borderColor={'black'} />
-                  <Box m={'5px'} p={'3px'} textAlign={'center'}>
-                    <Link as={RouterLink} to="#" display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
-                      <ExternalLinkIcon />
-                      <Text pl={'5px'}>Ver pagina do evento</Text>
-                    </Link>
-                  </Box>
-                </CardFooter>
-              </Card>
-            </GridItem>
-          ))}
-        </Grid>
-      </Container>
-
-      <Divider
-        mx={'auto'}
-        w={['320px', '380px', '450px', '750px', '1000px']}
-        mt={'80px'}
-        mb={'60px'}
-        borderRadius={'25px'}
-        borderWidth={'2px'}
-        color={'#513636'}
+                  <Link as={RouterLink} to="#" display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
+  <InfoOutlineIcon />
+  <Text pl={'5px'}>Saiba Mais</Text>
+</Link>
+</Box>
+</CardBody>
+<Divider borderWidth={'1px'} />
+<CardFooter flexDirection={'column'}>
+  <Box m={'5px'}>
+    <InputGroup mb={'10px'}>
+      <InputLeftElement>
+        <Icon as={MdOutlineEmojiEmotions} color="black" boxSize={6} />
+      </InputLeftElement>
+      <Input
+        backgroundColor={'#C1C1C1'}
+        border={'1px solid black'}
+        borderRadius={'15px'}
+        placeholder={'Adicionar um comentário...'}
+        _placeholder={{ color: 'black' }}
+        fontWeight="light"
+        fontSize={'sm'}
       />
+      <InputRightElement>
+        <Icon as={IoMdSend} color="black" boxSize={6} />
+      </InputRightElement>
+    </InputGroup>
+  </Box>
+  <Box m={'5px'} textAlign={'center'}>
+    <Stat>
+      <StatNumber fontSize={'xl'}>{evento.media || '-'}</StatNumber>
+    </Stat>
+    <Box display={'flex'} flexDirection={'row'} justifyContent={'center'}>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Image key={i} src={Estrela} alt={`Nível de Avaliação ${i + 1}`} />
+      ))}
+    </Box>
+  </Box>
+  <Box m={'5px'} textAlign={'center'} alignItems={'center'}>
+    <Link as={RouterLink} to="#" display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'} onClick={openModal}>
+      <SmallAddIcon color={'white'} boxSize={5} backgroundColor={'#438545'} borderRadius={'50%'} />
+      <Text pl={'5px'} color={'#438545'} fontSize={'sm'}>
+        Avaliar o evento
+      </Text>
+    </Link>
+    <ModalAvaliar isOpen={isModalOpen} onClose={closeModal} type="evento"/>
+  </Box>
+  <Divider borderWidth={'1px'} borderColor={'black'} />
+  <Box m={'5px'} p={'3px'} textAlign={'center'}>
+    <Link as={RouterLink} to="#" display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
+      <ExternalLinkIcon />
+      <Text pl={'5px'}>Ver página do evento</Text>
+    </Link>
+  </Box>
+</CardFooter>
+</Card>
+</GridItem>
+))}
+</Grid>
+</Container>
 
-      <Container maxW={'100%'} mb={'30px'}>
-        <Box mb={'40px'} textAlign={'center'}>
-          <Heading size="2xl" color={'#98FF68'}>
-            Produtores
-          </Heading>
-          <Text color={'white'}>Conheça um pouco mais sobre os nossos parceiros e produtores da região</Text>
-        </Box>
-        <Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-around'}>
-          <Card border={'2px solid black'} maxW={'300px'} m={'20px'}>
-            <CardHeader p={'none'} display={'flex'} justifyContent={'space-around'}>
-              <Image w={'100%'} src={ImgProdutor} alt="Imagem do produtor" />
-            </CardHeader>
-            <CardBody p={'none'}>
-              <Box w={'100%'} p={'5px'} backgroundColor={'#7ED957'} textAlign={'center'} fontSize={'xl'}>
-                Nome do Produtor
-              </Box>
-              <Box p={'10px'} m={'10px'} backgroundColor={'#D9D9D9'} textAlign={'center'} border={'1px solid black'} borderRadius={'15px'}>
-                <Text>Uma descrição breve sobre o produtor, produtos que ele vende e o que mais ele oferece no mercado...</Text>
-                <Text color={'#7A5448'}>Clique abaixo para saber mais...</Text>
-              </Box>
-            </CardBody>
-            <Divider borderWidth={'1px'} />
-            <CardFooter flexDirection={'column'}>
-              <Box m={'5px'} textAlign={'center'}>
-                <Link as={RouterLink} to="#" display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
-                  <ExternalLinkIcon />
-                  <Text pl={'5px'}>Ver página do produtor</Text>
-                </Link>
-              </Box>
-            </CardFooter>
-          </Card>
-        </Box>
-      </Container>
-    </>
-  );
+<Divider
+mx={'auto'}
+w={['320px', '380px', '450px', '750px', '1000px']}
+mt={'80px'}
+mb={'60px'}
+borderRadius={'25px'}
+borderWidth={'2px'}
+color={'#513636'}
+/>
+
+<Container maxW={'100%'} mb={'30px'}>
+<Box mb={'40px'} textAlign={'center'}>
+  <Heading size="2xl" color={'#98FF68'}>
+    Produtores
+  </Heading>
+  <Text color={'white'}>Conheça um pouco mais sobre os nossos parceiros e produtores da região</Text>
+</Box>
+<Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-around'}>
+  <Card border={'2px solid black'} maxW={'300px'} m={'20px'}>
+    <CardHeader p={'none'} display={'flex'} justifyContent={'space-around'}>
+      <Image w={'100%'} src={ImgProdutor} alt="Imagem do produtor" />
+    </CardHeader>
+    <CardBody p={'none'}>
+      <Box w={'100%'} p={'5px'} backgroundColor={'#7ED957'} textAlign={'center'} fontSize={'xl'}>
+        Nome do Produtor
+      </Box>
+      <Box p={'10px'} m={'10px'} backgroundColor={'#D9D9D9'} textAlign={'center'} border={'1px solid black'} borderRadius={'15px'}>
+        <Text>Uma descrição breve sobre o produtor, produtos que ele vende e o que mais ele oferece no mercado...</Text>
+        <Text color={'#7A5448'}>Clique abaixo para saber mais...</Text>
+      </Box>
+    </CardBody>
+    <Divider borderWidth={'1px'} />
+    <CardFooter flexDirection={'column'}>
+      <Box m={'5px'} textAlign={'center'}>
+        <Link as={RouterLink} to="#" display={'flex'} flexDirection={'row'} justifyContent={'center'} alignItems={'center'}>
+          <ExternalLinkIcon />
+          <Text pl={'5px'}>Ver página do produtor</Text>
+        </Link>
+      </Box>
+    </CardFooter>
+  </Card>
+</Box>
+</Container>
+</>
+);
 }
 
 export default Home;
+
