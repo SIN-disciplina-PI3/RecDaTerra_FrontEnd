@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Flex, Box } from "@chakra-ui/react"
 
 /*Importação dos componentes*/
@@ -37,6 +37,7 @@ import BotaoPost from './components/BotaoPost/BotaoPost';
 function App() {
   const location = useLocation();
   const { userType } = useContext(UserContext);
+  const isHome = location.pathname === '/home';
 
   return (
       <>
@@ -75,12 +76,12 @@ function App() {
               <Route path='/post' element={<Post />} />
               {userType === 'cliente' ? (
                 <>
-                  <Route path='/perfilcliente' element={<PerfilCliente />} />
+                  <Route path='/perfilcliente/:clienteId' element={<PerfilCliente />} />
                   <Route path='/vizualizaprodutor' element={<VerProdutor />} />
                 </>
               ) : userType === 'produtor' ? (
                 <>
-                  <Route path='/perfilprodutor' element={<PerfilProdutor />} />
+                  <Route path='/perfilprodutor/:produtorId' element={<PerfilProdutor />} />
                   <Route path='/visualizacliente' element={<VerCliente />} />
                 </>
               ) : null}
@@ -90,7 +91,7 @@ function App() {
           <Box as={"footer"}>
             <Footer />
             {/* Renderiza o componente AddPostButton apenas para usuários do tipo 'produtor' */}
-          {userType === 'produtor' && <BotaoPost />}
+          {userType === 'produtor' && isHome && <BotaoPost />}
           </Box>
         </Flex>
       </>

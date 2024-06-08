@@ -43,7 +43,7 @@ function ModalAvaliar({ isOpen, onClose, type, avaliavelId, tipoAvaliavel }) {
             });
             if (response.ok) {
                 console.log('Avaliação enviada com sucesso!');
-                // Aqui você pode adicionar lógica adicional após o envio da avaliação
+                // Adicionar lógica adicional após o envio da avaliação, se necessário
             } else {
                 console.error('Erro ao enviar avaliação:', response.statusText);
             }
@@ -69,7 +69,7 @@ function ModalAvaliar({ isOpen, onClose, type, avaliavelId, tipoAvaliavel }) {
                 </ModalHeader>
                 <ModalBody>
                     <Flex justifyContent='center' mb='20px'>
-                        {[...Array(5)].map((star, index) => {
+                        {[...Array(5)].map((_, index) => {
                             const ratingValue = index + 1;
                             return (
                                 <label key={index}>
